@@ -1,10 +1,12 @@
 // MUI
 import {
     Button
-    , Sheet
     , Stack
     , Typography
 } from '@mui/joy';
+
+// Components
+import BackgroundSheet from '../components/BackgroundSheet/BackgroundSheet';
 
 // Context
 import { useMemoryGameContext } from '../context/context';
@@ -13,16 +15,7 @@ const StartScreen = () => {
     const { setCurrentScreen } = useMemoryGameContext();
 
     return (
-        <Sheet
-            variant='soft'
-            sx={ {
-                width: '60vw'
-                , height: '90vh'
-                , borderRadius: '1rem'
-                , boxShadow: theme => theme.shadow.xl
-                , '--joy-shadowOpacity': '.3'
-            } }
-        >
+        <BackgroundSheet>
             <Stack
                 alignItems='center'
                 p='1rem'
@@ -60,7 +53,7 @@ const StartScreen = () => {
                     </Button>
                 </Stack>
             </Stack>
-        </Sheet>
+        </BackgroundSheet>
     );
 };
 
