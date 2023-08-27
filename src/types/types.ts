@@ -4,6 +4,6 @@ import {
 } from 'react';
 
 export type TMemoryGameContext = {
-    currentScreen: string;
-    setCurrentScreen: Dispatch<SetStateAction<string>>;
+    currentScreen: 'start-screen' | 'game-screen' | 'game-over-screen';
+    setCurrentScreen: Dispatch<SetStateAction<TMemoryGameContext['currentScreen']>>;
 }

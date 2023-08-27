@@ -10,14 +10,14 @@ import {
 import { TMemoryGameContext } from '../types/types';
 
 const initialState: TMemoryGameContext = {
-    currentScreen: ''
+    currentScreen: 'start-screen'
     , setCurrentScreen: () => {}
 };
 
 const MemoryGameContext = createContext<TMemoryGameContext>( initialState );
 
 const MemoryGameContextProvider = ( { children }: PropsWithChildren<unknown> ) => {
-    const [ currentScreen, setCurrentScreen ] = useState<string>( '' );
+    const [ currentScreen, setCurrentScreen ] = useState<TMemoryGameContext['currentScreen']>( 'start-screen' );
 
     return (
         <MemoryGameContext.Provider
