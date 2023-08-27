@@ -16,7 +16,7 @@ function App () {
             justifyContent='center'
             alignItems='center'
             height='100vh'
-            sx={ { backgroundColor: 'background.backdrop' } }
+            sx={ { backgroundColor: theme => theme.palette.background.level3 } }
         >
             {
                 currentScreen === 'start-screen'

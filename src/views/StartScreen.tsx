@@ -35,7 +35,7 @@ const StartScreen = () => {
                 >
                     Memory Fun!
                 </Typography>
-                <Stack gap='5rem'>
+                <Stack gap='6rem'>
                     <Typography
                         level='title-lg'
                         fontStyle='italic'
@@ -51,6 +51,9 @@ const StartScreen = () => {
                             , fontSize: '2rem'
                             , width: '12rem'
                             , height: '5rem'
+                            , boxShadow: theme => theme.shadow.md
+                            , '--joy-shadowOpacity': '.4'
+                            , borderRadius: '.75rem'
                         } }
                         onClick={ () => setCurrentScreen( 'game-screen' ) }
                     >
