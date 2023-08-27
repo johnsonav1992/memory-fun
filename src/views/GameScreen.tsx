@@ -6,7 +6,7 @@ import BackgroundSheet from '../components/BackgroundSheet/BackgroundSheet';
 import MemoryCard from '../components/MemoryCard/MemoryCard';
 
 // Assets
-import earth from '../assets/earth.png';
+import { spaceCards } from '../utils/spaceCards';
 
 const GameScreen = () => {
     return (
@@ -19,30 +19,15 @@ const GameScreen = () => {
                 gap='.5rem'
                 flexWrap='wrap'
             >
-                <MemoryCard
-                    width='10vw'
-                    image={ earth }
-                />
-                <MemoryCard
-                    width='10vw'
-                    image={ earth }
-                />
-                <MemoryCard
-                    width='10vw'
-                    image={ earth }
-                />
-                <MemoryCard
-                    width='10vw'
-                    image={ earth }
-                />
-                <MemoryCard
-                    width='10vw'
-                    image={ earth }
-                />
-                <MemoryCard
-                    width='10vw'
-                    image={ earth }
-                />
+                {
+                    spaceCards.map( card => (
+                        <MemoryCard
+                            key={ card.name }
+                            width='10vw'
+                            image={ card.path }
+                        />
+                    ) )
+                }
             </Stack>
         </BackgroundSheet>
     );

@@ -10,6 +10,7 @@ const MemoryCard = ( {
     width
     , image
 }: Props ) => {
+    console.log( image );
     return (
         <Card
             sx={ {
