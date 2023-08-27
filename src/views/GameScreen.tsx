@@ -1,4 +1,9 @@
+/* eslint-disable no-undef */
 import { useRef } from 'react';
+
+// Libraries
+import { v4 as uuidv4 } from 'uuid';
+import { shuffle } from 'lodash';
 
 // MUI
 import { Stack } from '@mui/joy';
@@ -10,11 +15,7 @@ import MemoryCard from '../components/MemoryCard/MemoryCard';
 // Context
 import { useMemoryGameContext } from '../context/context';
 
-// Utils
-import { shuffle } from 'lodash';
-
 const GameScreen = () => {
-
     const { currentDeck } = useMemoryGameContext();
 
     const currentRoundDeck = useRef( shuffle( [ ...currentDeck, ...currentDeck ] ) );

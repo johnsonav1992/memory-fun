@@ -30,9 +30,18 @@ const MemoryCard = ( {
     const [ isCardImageVisible, setIsCardImageVisible ] = useState( false );
 
     const handleFlipCard = ( newCard: TMemoryCard ) => {
-        if ( flippedCards.length === 2 ) return;
-        setIsCardImageVisible( currentVis => !currentVis );
-        setFlippedCards( currentFlipped => [ ...currentFlipped, newCard ] );
+        if ( flippedCards.length === 2 && flippedCards.includes( newCard ) && isCardImageVisible ) {
+            setIsCardImageVisible( false );
+            setFlippedCards( currentFlipped =>
+                currentFlipped.length === 1
+                    ? []
+                    : currentFlipped.filter( card => card !== newCard )
+            );
+        } else {
+            setIsCardImageVisible( currentVis => !currentVis );
+            setFlippedCards( currentFlipped => [ ...currentFlipped, newCard ] );
+        }
+
     };
 
     return (
