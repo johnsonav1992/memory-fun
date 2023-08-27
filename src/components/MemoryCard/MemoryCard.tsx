@@ -1,9 +1,13 @@
+import { useState } from 'react';
+
+// MUI
 import {
     Box
     , Card
 } from '@mui/joy';
+
+// Components
 import Image from '../Image/Image';
-import { useState } from 'react';
 
 interface Props {
     width: string;
