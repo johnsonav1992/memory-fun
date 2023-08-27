@@ -11,8 +11,18 @@ import BackgroundSheet from '../components/BackgroundSheet/BackgroundSheet';
 // Context
 import { useMemoryGameContext } from '../context/context';
 
+// Assets
+import { spaceCards } from '../utils/spaceCards';
+
 const StartScreen = () => {
-    const { setCurrentScreen } = useMemoryGameContext();
+    const {
+        setCurrentScreen, setCurrentDeck
+    } = useMemoryGameContext();
+
+    const handleStartGame = () => {
+        setCurrentDeck( spaceCards );
+        setCurrentScreen( 'game-screen' );
+    };
 
     return (
         <BackgroundSheet>
@@ -47,7 +57,7 @@ const StartScreen = () => {
                             , '--joy-shadowOpacity': '.4'
                             , borderRadius: '.75rem'
                         } }
-                        onClick={ () => setCurrentScreen( 'game-screen' ) }
+                        onClick={ handleStartGame }
                     >
                         { 'Let\'s Go!' }
                     </Button>

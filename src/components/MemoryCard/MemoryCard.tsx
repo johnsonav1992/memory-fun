@@ -12,11 +12,13 @@ import Image from '../Image/Image';
 interface Props {
     width: string;
     image: string;
+    cardStatus: 'in-progress' | 'completed'
 }
 
 const MemoryCard = ( {
     width
     , image
+    , cardStatus
 }: Props ) => {
     const [ isCardImageVisible, setIsCardImageVisible ] = useState( false );
 
@@ -25,38 +27,56 @@ const MemoryCard = ( {
     };
 
     return (
-        <Card
-            sx={ {
-                width
-                , height: width
-                , p: !isCardImageVisible ? '.2rem' : '.1rem'
-                , '&:hover': {
-                    cursor: 'pointer'
-                }
-            } }
-            onClick={ handleFlipCard }
-        >
+        <>
             {
-                isCardImageVisible
+                cardStatus === 'in-progress'
                     ? (
-                        <Image
-                            src={ image }
-                            width='100%'
-                            height='100%'
-                        />
+
+                        <Card
+                            sx={ {
+                                width
+                                , height: width
+                                , p: !isCardImageVisible ? '.2rem' : '.1rem'
+                                , '&:hover': {
+                                    cursor: 'pointer'
+                                }
+                            } }
+                            onClick={ handleFlipCard }
+                        >
+                            {
+                                isCardImageVisible
+                                    ? (
+                                        <Image
+                                            src={ image }
+                                            width='100%'
+                                            height='100%'
+                                        />
+                                    )
+                                    : (
+                                        <Box
+                                            width='100%'
+                                            height='100%'
+                                            sx={ {
+                                                backgroundColor: theme => theme.palette.primary[ 300 ]
+                                                , borderRadius: 'inherit'
+                                            } }
+                                        />
+                                    )
+                            }
+                        </Card>
                     )
                     : (
-                        <Box
-                            width='100%'
-                            height='100%'
+                        <Card
                             sx={ {
-                                backgroundColor: theme => theme.palette.primary[ 300 ]
-                                , borderRadius: 'inherit'
+                                width
+                                , height: width
+                                , backgroundColor: 'transparent'
+                                , boxShadow: 'none'
                             } }
                         />
                     )
             }
-        </Card>
+        </>
     );
 };
 

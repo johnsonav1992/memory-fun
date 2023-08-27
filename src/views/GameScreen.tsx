@@ -5,10 +5,13 @@ import { Stack } from '@mui/joy';
 import BackgroundSheet from '../components/BackgroundSheet/BackgroundSheet';
 import MemoryCard from '../components/MemoryCard/MemoryCard';
 
-// Assets
-import { spaceCards } from '../utils/spaceCards';
+// Context
+import { useMemoryGameContext } from '../context/context';
 
 const GameScreen = () => {
+
+    const { currentDeck } = useMemoryGameContext();
+
     return (
         <BackgroundSheet>
             <Stack
@@ -20,11 +23,12 @@ const GameScreen = () => {
                 flexWrap='wrap'
             >
                 {
-                    spaceCards.map( card => (
+                    currentDeck.map( card => (
                         <MemoryCard
                             key={ card.name }
-                            width='10vw'
                             image={ card.path }
+                            width='10vw'
+                            cardStatus={ card.cardStatus }
                         />
                     ) )
                 }
