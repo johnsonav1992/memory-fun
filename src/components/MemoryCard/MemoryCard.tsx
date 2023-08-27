@@ -25,7 +25,7 @@ const MemoryCard = ( {
             sx={ {
                 width
                 , height: width
-                , p: !isCardImageVisible ? '.2rem' : 'inherit'
+                , p: !isCardImageVisible ? '.2rem' : '.1rem'
                 , '&:hover': {
                     cursor: 'pointer'
                 }
