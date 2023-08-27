@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+
 // MUI
 import { Stack } from '@mui/joy';
 
@@ -8,9 +10,14 @@ import MemoryCard from '../components/MemoryCard/MemoryCard';
 // Context
 import { useMemoryGameContext } from '../context/context';
 
+// Utils
+import { shuffle } from 'lodash';
+
 const GameScreen = () => {
 
     const { currentDeck } = useMemoryGameContext();
+
+    const currentRoundDeck = useRef( shuffle( [ ...currentDeck, ...currentDeck ] ) );
 
     return (
         <BackgroundSheet>
@@ -23,12 +30,11 @@ const GameScreen = () => {
                 flexWrap='wrap'
             >
                 {
-                    currentDeck.map( card => (
+                    currentRoundDeck.current.map( card => (
                         <MemoryCard
                             key={ card.name }
-                            image={ card.path }
+                            card={ card }
                             width='10vw'
-                            cardStatus={ card.cardStatus }
                         />
                     ) )
                 }

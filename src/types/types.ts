@@ -6,8 +6,10 @@ import {
 export type TMemoryGameContext = {
     currentScreen: 'start-screen' | 'game-screen' | 'game-over-screen';
     setCurrentScreen: Dispatch<SetStateAction<TMemoryGameContext['currentScreen']>>;
-    currentDeck: MemoryCard[];
+    currentDeck: TMemoryCard[];
     setCurrentDeck: Dispatch<SetStateAction<TMemoryGameContext['currentDeck']>>;
+    flippedCards: TMemoryCard[];
+    setFlippedCards: Dispatch<SetStateAction<TMemoryGameContext['flippedCards']>>;
 }
 
 export interface CardImage {
@@ -15,6 +17,6 @@ export interface CardImage {
     name: string;
 }
 
-export interface MemoryCard extends CardImage {
+export interface TMemoryCard extends CardImage {
     cardStatus: 'in-progress' | 'completed';
 }

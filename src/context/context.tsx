@@ -14,6 +14,8 @@ const initialState: TMemoryGameContext = {
     , setCurrentScreen: () => {}
     , currentDeck: []
     , setCurrentDeck: () => {}
+    , flippedCards: []
+    , setFlippedCards: () => {}
 };
 
 const MemoryGameContext = createContext<TMemoryGameContext>( initialState );
@@ -21,6 +23,7 @@ const MemoryGameContext = createContext<TMemoryGameContext>( initialState );
 const MemoryGameContextProvider = ( { children }: PropsWithChildren<unknown> ) => {
     const [ currentScreen, setCurrentScreen ] = useState<TMemoryGameContext['currentScreen']>( 'start-screen' );
     const [ currentDeck, setCurrentDeck ] = useState<TMemoryGameContext['currentDeck']>( [] );
+    const [ flippedCards, setFlippedCards ] = useState<TMemoryGameContext['flippedCards']>( [] );
 
     return (
         <MemoryGameContext.Provider
@@ -29,6 +32,8 @@ const MemoryGameContextProvider = ( { children }: PropsWithChildren<unknown> ) =
                 , setCurrentScreen
                 , currentDeck
                 , setCurrentDeck
+                , flippedCards
+                , setFlippedCards
             } }
         >
             { children }

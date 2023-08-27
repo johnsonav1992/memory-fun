@@ -8,28 +8,37 @@ import {
 
 // Components
 import Image from '../Image/Image';
+import { useMemoryGameContext } from '../../context/context';
+
+// Types
+import { TMemoryCard } from '../../types/types';
 
 interface Props {
     width: string;
-    image: string;
-    cardStatus: 'in-progress' | 'completed'
+    card: TMemoryCard;
 }
 
 const MemoryCard = ( {
     width
-    , image
-    , cardStatus
+    , card
 }: Props ) => {
+    const {
+        flippedCards
+        , setFlippedCards
+    } = useMemoryGameContext();
+
     const [ isCardImageVisible, setIsCardImageVisible ] = useState( false );
 
-    const handleFlipCard = () => {
+    const handleFlipCard = ( newCard: TMemoryCard ) => {
+        if ( flippedCards.length === 2 ) return;
         setIsCardImageVisible( currentVis => !currentVis );
+        setFlippedCards( currentFlipped => [ ...currentFlipped, newCard ] );
     };
 
     return (
         <>
             {
-                cardStatus === 'in-progress'
+                card.cardStatus === 'in-progress'
                     ? (
 
                         <Card
@@ -41,13 +50,13 @@ const MemoryCard = ( {
                                     cursor: 'pointer'
                                 }
                             } }
-                            onClick={ handleFlipCard }
+                            onClick={ () => handleFlipCard( card ) }
                         >
                             {
                                 isCardImageVisible
                                     ? (
                                         <Image
-                                            src={ image }
+                                            src={ card.path }
                                             width='100%'
                                             height='100%'
                                         />
