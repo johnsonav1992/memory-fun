@@ -47,8 +47,7 @@ const StartScreen = () => {
                         variant='solid'
                         color='primary'
                         sx={ {
-                            textTransform: 'capitalize'
-                            , fontSize: '2rem'
+                            fontSize: '2rem'
                             , width: '12rem'
                             , height: '5rem'
                             , boxShadow: theme => theme.shadow.md
