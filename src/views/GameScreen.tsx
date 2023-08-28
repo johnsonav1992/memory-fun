@@ -1,5 +1,8 @@
 /* eslint-disable no-undef */
-import { useRef } from 'react';
+import {
+    useEffect
+    , useRef
+} from 'react';
 
 // Libraries
 import { shuffle } from 'lodash';
@@ -32,6 +35,20 @@ const GameScreen = () => {
             ]
         )
     );
+
+    useEffect( () => {
+        if ( flippedCards.length === 2 && flippedCards[ 0 ].name === flippedCards[ 1 ].name ) {
+            currentRoundDeck.current = currentRoundDeck.current.map( card => {
+                if ( card.name === flippedCards[ 0 ].name ) {
+                    return {
+                        ...card
+                        , cardStatus: 'completed'
+                    };
+                }
+                return card;
+            } );
+        }
+    }, [ flippedCards ] );
 
     return (
         <BackgroundSheet>
