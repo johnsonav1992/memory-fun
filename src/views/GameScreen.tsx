@@ -22,7 +22,10 @@ const GameScreen = () => {
     const {
         currentDeck
         , flippedCards
+        , setFlippedCards
     } = useMemoryGameContext();
+
+    const isMatch = flippedCards.length === 2 && flippedCards[ 0 ].name === flippedCards[ 1 ].name;
 
     const currentRoundDeck = useRef(
         shuffle(
@@ -37,7 +40,7 @@ const GameScreen = () => {
     );
 
     useEffect( () => {
-        if ( flippedCards.length === 2 && flippedCards[ 0 ].name === flippedCards[ 1 ].name ) {
+        if ( isMatch ) {
             currentRoundDeck.current = currentRoundDeck.current.map( card => {
                 if ( card.name === flippedCards[ 0 ].name ) {
                     return {
@@ -47,6 +50,7 @@ const GameScreen = () => {
                 }
                 return card;
             } );
+            setFlippedCards( [] );
         }
     }, [ flippedCards ] );
 
