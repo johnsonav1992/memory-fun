@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 // MUI
 import {
     Box
@@ -27,31 +25,29 @@ const MemoryCard = ( {
         , setFlippedCards
     } = useMemoryGameContext();
 
-    const [ isCardImageVisible, setIsCardImageVisible ] = useState( false );
+    const isCardImageVisible = !!flippedCards.find( flippedCard => flippedCard.id === card.id );
 
     const handleFlipCard = ( clickedCard: TMemoryCard ) => {
-        const isClickedCardAlreadyFlipped = flippedCards.some( card => card.name === clickedCard.name );
+        const isClickedCardAlreadyFlipped = flippedCards.some( card => card.id === clickedCard.id );
         const areMaxCardsFlipped = flippedCards.length === 2;
+        const isMatch = flippedCards.length === 1 && flippedCards[ 0 ].name === clickedCard.name && flippedCards[ 0 ].id !== clickedCard.id;
 
         if ( areMaxCardsFlipped && !isClickedCardAlreadyFlipped ) {
             return;
         }
 
-        if ( flippedCards.length === 1 && flippedCards[ 0 ].name === clickedCard.name && flippedCards[ 0 ].id !== clickedCard.id ) {
-            setIsCardImageVisible( true );
+        if ( isMatch ) {
             setFlippedCards( currentFlipped => [ ...currentFlipped, clickedCard ] );
             return console.log( 'Its a match!!' );
         }
 
         if ( isClickedCardAlreadyFlipped ) {
-            setIsCardImageVisible( false );
             setFlippedCards( currentFlipped =>
                 currentFlipped.length === 1
                     ? []
                     : currentFlipped.filter( card => card !== clickedCard )
             );
         } else {
-            setIsCardImageVisible( true );
             setFlippedCards( currentFlipped => [ ...currentFlipped, clickedCard ] );
         }
 
