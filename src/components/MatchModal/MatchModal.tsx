@@ -32,7 +32,7 @@ const MatchModal = ( {
             <ModalDialog>
                 <Stack
                     alignItems='center'
-                    gap='1rem'
+                    gap='1.5rem'
                     m='1rem'
                 >
                     <Typography
