@@ -52,7 +52,6 @@ const GameScreen = () => {
                 direction='row'
                 justifyContent='center'
                 width='100%'
-                p='1rem'
                 gap='.5rem'
                 flexWrap='wrap'
             >

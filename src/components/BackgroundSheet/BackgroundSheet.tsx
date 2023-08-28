@@ -8,8 +8,10 @@ const BackgroundSheet = ( { children }: PropsWithChildren<unknown> ) => {
         <Sheet
             variant='soft'
             sx={ {
-                width: '60vw'
-                , height: '90vh'
+                width: '55vw'
+                , p: '.5rem'
+                , pt: '1rem'
+                , height: '55vw'
                 , borderRadius: '1rem'
                 , boxShadow: theme => theme.shadow.xl
                 , '--joy-shadowOpacity': '.3'

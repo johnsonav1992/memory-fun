@@ -17,8 +17,9 @@ import rocket1 from '../assets/rocket1.png';
 import shuttle from '../assets/shuttle.png';
 import star from '../assets/star.png';
 import ufo from '../assets/ufo.png';
+import alien from '../assets/alien.png';
 
-export const spaceCards: ArrayOfLength<TMemoryCard, 9> = [
+export const spaceCards: ArrayOfLength<TMemoryCard, 10> = [
     {
         id: uuidv4()
         , path: astro1
@@ -71,6 +72,12 @@ export const spaceCards: ArrayOfLength<TMemoryCard, 9> = [
         id: uuidv4()
         , path: ufo
         , name: 'ufo'
+        , cardStatus: 'in-progress'
+    }
+    , {
+        id: uuidv4()
+        , path: alien
+        , name: 'alien'
         , cardStatus: 'in-progress'
     }
 ];
