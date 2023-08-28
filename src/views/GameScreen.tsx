@@ -2,8 +2,8 @@
 import { useRef } from 'react';
 
 // Libraries
-import { v4 as uuidv4 } from 'uuid';
 import { shuffle } from 'lodash';
+import { v4 as uuidv4 } from 'uuid';
 
 // MUI
 import { Stack } from '@mui/joy';
@@ -16,9 +16,22 @@ import MemoryCard from '../components/MemoryCard/MemoryCard';
 import { useMemoryGameContext } from '../context/context';
 
 const GameScreen = () => {
-    const { currentDeck } = useMemoryGameContext();
+    const {
+        currentDeck
+        , flippedCards
+    } = useMemoryGameContext();
 
-    const currentRoundDeck = useRef( shuffle( [ ...currentDeck, ...currentDeck ] ) );
+    const currentRoundDeck = useRef(
+        shuffle(
+            [
+                ...currentDeck
+                , ...currentDeck.map( card => ( {
+                    ...card
+                    , id: uuidv4()
+                } ) )
+            ]
+        )
+    );
 
     return (
         <BackgroundSheet>
@@ -33,7 +46,7 @@ const GameScreen = () => {
                 {
                     currentRoundDeck.current.map( card => (
                         <MemoryCard
-                            key={ card.name }
+                            key={ uuidv4() }
                             card={ card }
                             width='10vw'
                         />

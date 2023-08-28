@@ -1,3 +1,6 @@
+// Libraries
+import { v4 as uuidv4 } from 'uuid';
+
 // Types
 import {
     ArrayOfLength
@@ -17,47 +20,56 @@ import ufo from '../assets/ufo.png';
 
 export const spaceCards: ArrayOfLength<TMemoryCard, 9> = [
     {
-        path: astro1
+        id: uuidv4()
+        , path: astro1
         , name: 'astro1'
         , cardStatus: 'in-progress'
     }
     , {
-        path: astro2
+        id: uuidv4()
+        , path: astro2
         , name: 'astro2'
         , cardStatus: 'in-progress'
     }
     , {
-        path: earth
+        id: uuidv4()
+        , path: earth
         , name: 'earth'
         , cardStatus: 'in-progress'
     }
     , {
-        path: planet1
+        id: uuidv4()
+        , path: planet1
         , name: 'planet1'
         , cardStatus: 'in-progress'
     }
     , {
-        path: planet2
+        id: uuidv4()
+        , path: planet2
         , name: 'planet2'
         , cardStatus: 'in-progress'
     }
     , {
-        path: rocket1
+        id: uuidv4()
+        , path: rocket1
         , name: 'rocket1'
         , cardStatus: 'in-progress'
     }
     , {
-        path: shuttle
+        id: uuidv4()
+        , path: shuttle
         , name: 'shuttle'
         , cardStatus: 'in-progress'
     }
     , {
-        path: star
+        id: uuidv4()
+        , path: star
         , name: 'star'
         , cardStatus: 'in-progress'
     }
     , {
-        path: ufo
+        id: uuidv4()
+        , path: ufo
         , name: 'ufo'
         , cardStatus: 'in-progress'
     }

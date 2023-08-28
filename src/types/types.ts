@@ -20,5 +20,6 @@ export interface CardImage {
 }
 
 export interface TMemoryCard extends CardImage {
+    id: string;
     cardStatus: 'in-progress' | 'completed';
 }

@@ -29,17 +29,30 @@ const MemoryCard = ( {
 
     const [ isCardImageVisible, setIsCardImageVisible ] = useState( false );
 
-    const handleFlipCard = ( newCard: TMemoryCard ) => {
-        if ( flippedCards.length === 2 && flippedCards.includes( newCard ) && isCardImageVisible ) {
+    const handleFlipCard = ( clickedCard: TMemoryCard ) => {
+        const isClickedCardAlreadyFlipped = flippedCards.some( card => card.name === clickedCard.name );
+        const areMaxCardsFlipped = flippedCards.length === 2;
+
+        if ( areMaxCardsFlipped && !isClickedCardAlreadyFlipped ) {
+            return;
+        }
+
+        if ( flippedCards.length === 1 && flippedCards[ 0 ].name === clickedCard.name && flippedCards[ 0 ].id !== clickedCard.id ) {
+            setIsCardImageVisible( true );
+            setFlippedCards( currentFlipped => [ ...currentFlipped, clickedCard ] );
+            return console.log( 'Its a match!!' );
+        }
+
+        if ( isClickedCardAlreadyFlipped ) {
             setIsCardImageVisible( false );
             setFlippedCards( currentFlipped =>
                 currentFlipped.length === 1
                     ? []
-                    : currentFlipped.filter( card => card !== newCard )
+                    : currentFlipped.filter( card => card !== clickedCard )
             );
         } else {
-            setIsCardImageVisible( currentVis => !currentVis );
-            setFlippedCards( currentFlipped => [ ...currentFlipped, newCard ] );
+            setIsCardImageVisible( true );
+            setFlippedCards( currentFlipped => [ ...currentFlipped, clickedCard ] );
         }
 
     };
