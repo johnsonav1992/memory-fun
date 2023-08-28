@@ -18,12 +18,12 @@ import MemoryCard from '../components/MemoryCard/MemoryCard';
 // Context
 import { useMemoryGameContext } from '../context/context';
 import MatchModal from '../components/MatchModal/MatchModal';
+import { markPairCompleted } from '../utils/gameUtils';
 
 const GameScreen = () => {
     const {
         currentDeck
         , flippedCards
-        , setFlippedCards
     } = useMemoryGameContext();
 
     const isMatch = flippedCards.length === 2 && flippedCards[ 0 ].name === flippedCards[ 1 ].name;
@@ -42,16 +42,7 @@ const GameScreen = () => {
 
     useEffect( () => {
         if ( isMatch ) {
-            currentRoundDeck.current = currentRoundDeck.current.map( card => {
-                if ( card.name === flippedCards[ 0 ].name ) {
-                    return {
-                        ...card
-                        , cardStatus: 'completed'
-                    };
-                }
-                return card;
-            } );
-            // setFlippedCards( [] );
+            currentRoundDeck.current = markPairCompleted( currentRoundDeck.current, flippedCards );
         }
     }, [ flippedCards ] );
 
