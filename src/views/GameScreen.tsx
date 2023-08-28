@@ -17,6 +17,7 @@ import MemoryCard from '../components/MemoryCard/MemoryCard';
 
 // Context
 import { useMemoryGameContext } from '../context/context';
+import MatchModal from '../components/MatchModal/MatchModal';
 
 const GameScreen = () => {
     const {
@@ -50,7 +51,7 @@ const GameScreen = () => {
                 }
                 return card;
             } );
-            setFlippedCards( [] );
+            // setFlippedCards( [] );
         }
     }, [ flippedCards ] );
 
@@ -74,6 +75,10 @@ const GameScreen = () => {
                     ) )
                 }
             </Stack>
+            <MatchModal
+                open={ isMatch }
+                matchedCard={ flippedCards[ 0 ] }
+            />
         </BackgroundSheet>
     );
 };
