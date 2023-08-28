@@ -3,6 +3,8 @@ import {
     , SetStateAction
 } from 'react';
 
+export type ArrayOfLength<T, U extends number> = Array<T> & { length: U }
+
 export type TMemoryGameContext = {
     currentScreen: 'start-screen' | 'game-screen' | 'game-over-screen';
     setCurrentScreen: Dispatch<SetStateAction<TMemoryGameContext['currentScreen']>>;

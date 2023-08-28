@@ -1,5 +1,8 @@
 // Types
-import { TMemoryCard } from '../types/types';
+import {
+    ArrayOfLength
+    , TMemoryCard
+} from '../types/types';
 
 // Assets
 import astro1 from '../assets/astro1.png';
@@ -12,7 +15,7 @@ import shuttle from '../assets/shuttle.png';
 import star from '../assets/star.png';
 import ufo from '../assets/ufo.png';
 
-export const spaceCards: TMemoryCard[] = [
+export const spaceCards: ArrayOfLength<TMemoryCard, 9> = [
     {
         path: astro1
         , name: 'astro1'
