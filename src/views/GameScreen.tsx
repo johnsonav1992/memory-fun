@@ -15,6 +15,7 @@ import {
     , Theme
     , Typography
 } from '@mui/joy';
+import { SxProps } from '@mui/joy/styles/types';
 
 // Components
 import BackgroundSheet from '../components/BackgroundSheet/BackgroundSheet';
@@ -26,8 +27,9 @@ import { useMemoryGameContext } from '../context/context';
 
 // Utils
 import { markPairCompleted } from '../utils/gameUtils';
+
+// Types
 import { TMemoryGameContext } from '../types/types';
-import { SxProps } from '@mui/joy/styles/types';
 
 const GameScreen = () => {
     const {
