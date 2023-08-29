@@ -7,7 +7,7 @@ import {
 // Types
 import {
     TMemoryCard
-    , TMemoryGameContext
+    , TMemoryGameState
 } from '../types/types';
 
 export const markPairCompleted = ( deck: TMemoryCard[], flippedCards: TMemoryCard[] ): TMemoryCard[] => {
@@ -22,7 +22,7 @@ export const markPairCompleted = ( deck: TMemoryCard[], flippedCards: TMemoryCar
     } );
 };
 
-export const setCurrentPlayerColor = ( player: TMemoryGameContext['currentPlayer'], currentPlayer: TMemoryGameContext['currentPlayer'] ): SxProps | undefined => {
+export const setCurrentPlayerColor = ( player: TMemoryGameState['currentPlayer'], currentPlayer: TMemoryGameState['currentPlayer'] ): SxProps | undefined => {
     if ( player === currentPlayer ) {
         return {
             color: ( theme: Theme ) => theme.palette.success[ 400 ]
