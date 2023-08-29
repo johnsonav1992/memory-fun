@@ -13,8 +13,12 @@ import MemoryCard from '../MemoryCard/MemoryCard';
 // types
 import { TMemoryCard } from '../../types/types';
 
-// Context
-import { useMemoryGameContext } from '../../state/context';
+// State
+import { useSetAtom } from 'jotai';
+import {
+    currentScreenAtom
+    , flippedCardsAtom
+} from '../../state/jotai';
 
 interface Props {
     open: boolean;
@@ -27,10 +31,8 @@ const MatchModal = ( {
     , open
     , isGameFinished
 }: Props ) => {
-    const {
-        setFlippedCards
-        , setCurrentScreen
-    } = useMemoryGameContext();
+    const setFlippedCards = useSetAtom( flippedCardsAtom );
+    const setCurrentScreen = useSetAtom( currentScreenAtom );
 
     const buttonClickHandler = () => {
         if ( isGameFinished ) {

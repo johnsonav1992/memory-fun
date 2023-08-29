@@ -6,10 +6,13 @@ import {
 
 // Components
 import Image from '../Image/Image';
-import { useMemoryGameContext } from '../../state/context';
 
 // Types
 import { TMemoryCard } from '../../types/types';
+
+// State
+import { useAtom } from 'jotai';
+import { flippedCardsAtom } from '../../state/jotai';
 
 interface Props {
     width: string;
@@ -22,10 +25,7 @@ const MemoryCard = ( {
     , card
     , thickShadow = false
 }: Props ) => {
-    const {
-        flippedCards
-        , setFlippedCards
-    } = useMemoryGameContext();
+    const [ flippedCards, setFlippedCards ] = useAtom( flippedCardsAtom );
 
     const isCardImageVisible = !!flippedCards.find( flippedCard => flippedCard.id === card.id );
 
