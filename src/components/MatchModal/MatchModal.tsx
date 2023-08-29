@@ -14,7 +14,7 @@ import MemoryCard from '../MemoryCard/MemoryCard';
 import { TMemoryCard } from '../../types/types';
 
 // Context
-import { useMemoryGameContext } from '../../context/context';
+import { useMemoryGameContext } from '../../state/context';
 
 interface Props {
     open: boolean;

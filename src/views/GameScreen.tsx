@@ -21,7 +21,7 @@ import MemoryCard from '../components/MemoryCard/MemoryCard';
 import MatchModal from '../components/MatchModal/MatchModal';
 
 // Context
-import { useMemoryGameContext } from '../context/context';
+import { useMemoryGameContext } from '../state/context';
 
 // Utils
 import {

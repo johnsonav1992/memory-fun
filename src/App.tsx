@@ -5,11 +5,12 @@ import { Stack } from '@mui/joy';
 import StartScreen from './views/StartScreen';
 import GameScreen from './views/GameScreen';
 
-// Context
-import { useMemoryGameContext } from './context/context';
+// State
+import { useAtomValue } from 'jotai';
+import { currentScreenAtom } from './state/jotai';
 
 function App () {
-    const { currentScreen } = useMemoryGameContext();
+    const currentScreen = useAtomValue( currentScreenAtom );
 
     return (
         <Stack

@@ -9,7 +9,7 @@ import {
 import BackgroundSheet from '../components/BackgroundSheet/BackgroundSheet';
 
 // Context
-import { useMemoryGameContext } from '../context/context';
+import { useMemoryGameContext } from '../state/context';
 
 // Assets
 import { spaceCards } from '../utils/spaceCards';

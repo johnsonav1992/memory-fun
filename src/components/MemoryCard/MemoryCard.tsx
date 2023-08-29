@@ -6,7 +6,7 @@ import {
 
 // Components
 import Image from '../Image/Image';
-import { useMemoryGameContext } from '../../context/context';
+import { useMemoryGameContext } from '../../state/context';
 
 // Types
 import { TMemoryCard } from '../../types/types';
