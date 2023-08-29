@@ -9,7 +9,12 @@ import { shuffle } from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
 
 // MUI
-import { Stack } from '@mui/joy';
+import {
+    Card
+    , Stack
+    , Theme
+    , Typography
+} from '@mui/joy';
 
 // Components
 import BackgroundSheet from '../components/BackgroundSheet/BackgroundSheet';
@@ -21,11 +26,15 @@ import { useMemoryGameContext } from '../context/context';
 
 // Utils
 import { markPairCompleted } from '../utils/gameUtils';
+import { TMemoryGameContext } from '../types/types';
+import { SxProps } from '@mui/joy/styles/types';
 
 const GameScreen = () => {
     const {
         currentDeck
         , flippedCards
+        , scores
+        , currentPlayer
     } = useMemoryGameContext();
 
     const isMatch = flippedCards.length === 2 && flippedCards[ 0 ].name === flippedCards[ 1 ].name;
@@ -48,6 +57,17 @@ const GameScreen = () => {
         }
     }, [ flippedCards ] );
 
+    const es = scores.player1 !== 1 ? 'es' : '';
+    const _es = scores.player2 !== 1 ? 'es' : '';
+
+    const setCurrentPlayerColor = ( player: TMemoryGameContext['currentPlayer'], currentPlayer: TMemoryGameContext['currentPlayer'] ): SxProps | undefined => {
+        if ( player === currentPlayer ) {
+            return {
+                color: ( theme: Theme ) => theme.palette.success[ 400 ]
+            };
+        }
+    };
+
     return (
         <BackgroundSheet>
             <Stack
@@ -56,6 +76,25 @@ const GameScreen = () => {
                 gap='.5rem'
                 flexWrap='wrap'
             >
+                <Card sx={ { width: '100%' } }>
+                    <Stack
+                        direction='row'
+                        justifyContent='space-between'
+                    >
+                        <Typography
+                            level='title-lg'
+                            sx={ setCurrentPlayerColor( 'player1', currentPlayer ) }
+                        >
+                            { `Player 1:  ${ scores.player1 } match${ es }` }
+                        </Typography>
+                        <Typography
+                            level='title-lg'
+                            sx={ setCurrentPlayerColor( 'player2', currentPlayer ) }
+                        >
+                            { `Player 2:  ${ scores.player2 } match${ _es }` }
+                        </Typography>
+                    </Stack>
+                </Card>
                 {
                     currentRoundDeck.current.map( card => (
                         <MemoryCard

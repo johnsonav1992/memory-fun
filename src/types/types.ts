@@ -12,6 +12,10 @@ export type TMemoryGameContext = {
     setCurrentDeck: Dispatch<SetStateAction<TMemoryGameContext['currentDeck']>>;
     flippedCards: TMemoryCard[];
     setFlippedCards: Dispatch<SetStateAction<TMemoryGameContext['flippedCards']>>;
+    scores: Scores;
+    setScores: Dispatch<SetStateAction<TMemoryGameContext['scores']>>;
+    currentPlayer: 'player1' | 'player2';
+    setCurrentPlayer: Dispatch<SetStateAction<TMemoryGameContext['currentPlayer']>>;
 }
 
 export interface CardImage {
@@ -22,4 +26,9 @@ export interface CardImage {
 export interface TMemoryCard extends CardImage {
     id: string;
     cardStatus: 'in-progress' | 'completed';
+}
+
+export interface Scores {
+    player1: number;
+    player2: number;
 }
