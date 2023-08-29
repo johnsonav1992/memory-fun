@@ -41,8 +41,8 @@ import {
 const GameScreen = () => {
     const [ scores, setScores ] = useAtom( scoresAtom );
     const [ currentPlayer, setCurrentPlayer ] = useAtom( currentPlayerAtom );
-    const currentDeck = useAtomValue( currentDeckAtom );
     const [ flippedCards, setFlippedCards ] = useAtom( flippedCardsAtom );
+    const currentDeck = useAtomValue( currentDeckAtom );
 
     const currentRoundDeck = useRef(
         shuffle(
