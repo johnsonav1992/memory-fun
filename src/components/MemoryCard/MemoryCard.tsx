@@ -14,11 +14,13 @@ import { TMemoryCard } from '../../types/types';
 interface Props {
     width: string;
     card: TMemoryCard;
+    thickShadow?: boolean;
 }
 
 const MemoryCard = ( {
     width
     , card
+    , thickShadow = false
 }: Props ) => {
     const {
         flippedCards
@@ -60,14 +62,19 @@ const MemoryCard = ( {
                     ? (
 
                         <Card
-                            sx={ {
+                            sx={ [ {
                                 width
                                 , height: width
                                 , p: !isCardImageVisible ? '.2rem' : '.1rem'
                                 , '&:hover': {
                                     cursor: 'pointer'
                                 }
-                            } }
+                            }
+                            , thickShadow && {
+                                '--joy-shadowOpacity': '.5'
+                                , boxShadow: theme => theme.shadow.lg
+                            }
+                            ] }
                             onClick={ () => handleFlipCard( card ) }
                         >
                             {

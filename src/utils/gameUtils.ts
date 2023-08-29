@@ -1,3 +1,4 @@
+// Types
 import { TMemoryCard } from '../types/types';
 
 export const markPairCompleted = ( deck: TMemoryCard[], flippedCards: TMemoryCard[] ): TMemoryCard[] => {

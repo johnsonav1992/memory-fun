@@ -14,10 +14,12 @@ import { Stack } from '@mui/joy';
 // Components
 import BackgroundSheet from '../components/BackgroundSheet/BackgroundSheet';
 import MemoryCard from '../components/MemoryCard/MemoryCard';
+import MatchModal from '../components/MatchModal/MatchModal';
 
 // Context
 import { useMemoryGameContext } from '../context/context';
-import MatchModal from '../components/MatchModal/MatchModal';
+
+// Utils
 import { markPairCompleted } from '../utils/gameUtils';
 
 const GameScreen = () => {
@@ -51,7 +53,6 @@ const GameScreen = () => {
             <Stack
                 direction='row'
                 justifyContent='center'
-                width='100%'
                 gap='.5rem'
                 flexWrap='wrap'
             >

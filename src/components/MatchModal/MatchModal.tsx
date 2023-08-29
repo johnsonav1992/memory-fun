@@ -44,6 +44,7 @@ const MatchModal = ( {
                     <MemoryCard
                         card={ matchedCard }
                         width='10rem'
+                        thickShadow
                     />
                     <Button
                         sx={ { fontSize: '1rem' } }
