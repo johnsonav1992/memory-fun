@@ -35,9 +35,8 @@ const MatchModal = ( {
     const buttonClickHandler = () => {
         if ( isGameFinished ) {
             setCurrentScreen( 'game-over-screen' );
-        } else {
-            setFlippedCards( [] );
         }
+        setFlippedCards( [] );
     };
 
     return (

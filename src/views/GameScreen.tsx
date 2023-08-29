@@ -92,18 +92,34 @@ const GameScreen = () => {
                         direction='row'
                         justifyContent='space-between'
                     >
-                        <Typography
-                            level='title-lg'
-                            sx={ setCurrentPlayerColor( 'player1', currentPlayer ) }
-                        >
-                            { `Player 1:  ${ scores.player1 } match${ es }` }
-                        </Typography>
-                        <Typography
-                            level='title-lg'
-                            sx={ setCurrentPlayerColor( 'player2', currentPlayer ) }
-                        >
-                            { `Player 2:  ${ scores.player2 } match${ _es }` }
-                        </Typography>
+                        <Stack gap='.5rem'>
+                            <Typography
+                                level='title-lg'
+                                sx={ setCurrentPlayerColor( 'player1', currentPlayer ) }
+                            >
+                                { 'Player 1:' }
+                            </Typography>
+                            <Typography
+                                level='title-lg'
+                                sx={ setCurrentPlayerColor( 'player1', currentPlayer ) }
+                            >
+                                { `${ scores.player1 } match${ es }` }
+                            </Typography>
+                        </Stack>
+                        <Stack gap='.5rem'>
+                            <Typography
+                                level='title-lg'
+                                sx={ setCurrentPlayerColor( 'player2', currentPlayer ) }
+                            >
+                                { 'Player 2:' }
+                            </Typography>
+                            <Typography
+                                level='title-lg'
+                                sx={ setCurrentPlayerColor( 'player2', currentPlayer ) }
+                            >
+                                { `${ scores.player2 } match${ _es }` }
+                            </Typography>
+                        </Stack>
                     </Stack>
                 </Card>
                 {
