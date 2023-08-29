@@ -12,7 +12,6 @@ import { v4 as uuidv4 } from 'uuid';
 import {
     Card
     , Stack
-    , Theme
     , Typography
 } from '@mui/joy';
 
@@ -25,9 +24,10 @@ import MatchModal from '../components/MatchModal/MatchModal';
 import { useMemoryGameContext } from '../context/context';
 
 // Utils
-import { markPairCompleted } from '../utils/gameUtils';
-import { TMemoryGameContext } from '../types/types';
-import { SxProps } from '@mui/joy/styles/types';
+import {
+    markPairCompleted
+    , setCurrentPlayerColor
+} from '../utils/gameUtils';
 
 const GameScreen = () => {
     const {
@@ -37,10 +37,8 @@ const GameScreen = () => {
         , scores
         , currentPlayer
         , setCurrentPlayer
+        , setScores
     } = useMemoryGameContext();
-
-    const isMatch = flippedCards.length === 2 && flippedCards[ 0 ].name === flippedCards[ 1 ].name;
-    const isNotMatch = flippedCards.length === 2 && flippedCards[ 0 ].name !== flippedCards[ 1 ].name;
 
     const currentRoundDeck = useRef(
         shuffle(
@@ -54,12 +52,25 @@ const GameScreen = () => {
         )
     );
 
+    const isMatch = flippedCards.length === 2 && flippedCards[ 0 ].name === flippedCards[ 1 ].name;
+    const isNotMatch = flippedCards.length === 2 && flippedCards[ 0 ].name !== flippedCards[ 1 ].name;
+    const isGameFinished = currentRoundDeck.current.every( card => card.cardStatus === 'completed' );
+
+    const switchPlayer = () => setCurrentPlayer( currentPlayer === 'player1' ? 'player2' : 'player1' );
+    const incrementPlayerScore = () => setScores( scores => {
+        return {
+            ...scores
+            , [ currentPlayer ]: scores[ currentPlayer ] + 1
+        };
+    } );
+
     useEffect( () => {
         if ( isMatch ) {
             currentRoundDeck.current = markPairCompleted( currentRoundDeck.current, flippedCards );
+            incrementPlayerScore();
         } else if ( isNotMatch ) {
             setTimeout( () => {
-                setCurrentPlayer( currentPlayer === 'player1' ? 'player2' : 'player1' );
+                switchPlayer();
                 setFlippedCards( [] );
             }, 1500 );
         }
@@ -67,14 +78,6 @@ const GameScreen = () => {
 
     const es = scores.player1 !== 1 ? 'es' : '';
     const _es = scores.player2 !== 1 ? 'es' : '';
-
-    const setCurrentPlayerColor = ( player: TMemoryGameContext['currentPlayer'], currentPlayer: TMemoryGameContext['currentPlayer'] ): SxProps | undefined => {
-        if ( player === currentPlayer ) {
-            return {
-                color: ( theme: Theme ) => theme.palette.success[ 400 ]
-            };
-        }
-    };
 
     return (
         <BackgroundSheet>
@@ -116,6 +119,7 @@ const GameScreen = () => {
             <MatchModal
                 open={ isMatch }
                 matchedCard={ flippedCards[ 0 ] }
+                isGameFinished={ isGameFinished }
             />
         </BackgroundSheet>
     );

@@ -1,5 +1,14 @@
+// MUI
+import {
+    SxProps
+    , Theme
+} from '@mui/joy/styles/types';
+
 // Types
-import { TMemoryCard } from '../types/types';
+import {
+    TMemoryCard
+    , TMemoryGameContext
+} from '../types/types';
 
 export const markPairCompleted = ( deck: TMemoryCard[], flippedCards: TMemoryCard[] ): TMemoryCard[] => {
     return deck.map( card => {
@@ -11,4 +20,12 @@ export const markPairCompleted = ( deck: TMemoryCard[], flippedCards: TMemoryCar
         }
         return card;
     } );
+};
+
+export const setCurrentPlayerColor = ( player: TMemoryGameContext['currentPlayer'], currentPlayer: TMemoryGameContext['currentPlayer'] ): SxProps | undefined => {
+    if ( player === currentPlayer ) {
+        return {
+            color: ( theme: Theme ) => theme.palette.success[ 400 ]
+        };
+    }
 };

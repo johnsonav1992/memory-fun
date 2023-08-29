@@ -19,13 +19,26 @@ import { useMemoryGameContext } from '../../context/context';
 interface Props {
     open: boolean;
     matchedCard: TMemoryCard;
+    isGameFinished: boolean;
 }
 
 const MatchModal = ( {
     matchedCard
     , open
+    , isGameFinished
 }: Props ) => {
-    const { setFlippedCards } = useMemoryGameContext();
+    const {
+        setFlippedCards
+        , setCurrentScreen
+    } = useMemoryGameContext();
+
+    const buttonClickHandler = () => {
+        if ( isGameFinished ) {
+            setCurrentScreen( 'game-over-screen' );
+        } else {
+            setFlippedCards( [] );
+        }
+    };
 
     return (
         <Modal open={ open }>
@@ -39,7 +52,7 @@ const MatchModal = ( {
                         level='h1'
                         color='primary'
                     >
-                        You Got a Match!
+                        { isGameFinished ? 'You finished the game!' : 'You Got a Match!' }
                     </Typography>
                     <MemoryCard
                         card={ matchedCard }
@@ -48,9 +61,9 @@ const MatchModal = ( {
                     />
                     <Button
                         sx={ { fontSize: '1rem' } }
-                        onClick={ () => setFlippedCards( [] ) }
+                        onClick={ buttonClickHandler }
                     >
-                        Take Another Turn!
+                        { isGameFinished ? 'See Scores' : 'Take Another Turn!' }
                     </Button>
                 </Stack>
             </ModalDialog>
