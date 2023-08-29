@@ -1,5 +1,10 @@
+// Libraries
 import { atom } from 'jotai';
+
+// Types
 import { TMemoryGameState } from '../types/types';
+
+// Utils
 import { spaceCards } from '../utils/spaceCards';
 
 export const currentScreenAtom = atom<TMemoryGameState['currentScreen']>( 'start-screen' );
