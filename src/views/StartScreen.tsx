@@ -8,16 +8,19 @@ import {
 // Components
 import BackgroundSheet from '../components/BackgroundSheet/BackgroundSheet';
 
-// Context
-import { useMemoryGameContext } from '../state/context';
+// State
+import { useSetAtom } from 'jotai';
+import {
+    currentDeckAtom
+    , currentScreenAtom
+} from '../state/jotai';
 
-// Assets
+// Utils
 import { spaceCards } from '../utils/spaceCards';
 
 const StartScreen = () => {
-    const {
-        setCurrentScreen, setCurrentDeck
-    } = useMemoryGameContext();
+    const setCurrentScreen = useSetAtom( currentScreenAtom );
+    const setCurrentDeck = useSetAtom( currentDeckAtom );
 
     const handleStartGame = () => {
         setCurrentDeck( spaceCards );
