@@ -58,8 +58,10 @@ const GameScreen = () => {
         if ( isMatch ) {
             currentRoundDeck.current = markPairCompleted( currentRoundDeck.current, flippedCards );
         } else if ( isNotMatch ) {
-            setCurrentPlayer( currentPlayer === 'player1' ? 'player2' : 'player1' );
-            setTimeout( () => setFlippedCards( [] ), 1500 );
+            setTimeout( () => {
+                setCurrentPlayer( currentPlayer === 'player1' ? 'player2' : 'player1' );
+                setFlippedCards( [] );
+            }, 1500 );
         }
     }, [ flippedCards ] );
 
