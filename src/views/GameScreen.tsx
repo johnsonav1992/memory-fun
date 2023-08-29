@@ -33,11 +33,14 @@ const GameScreen = () => {
     const {
         currentDeck
         , flippedCards
+        , setFlippedCards
         , scores
         , currentPlayer
+        , setCurrentPlayer
     } = useMemoryGameContext();
 
     const isMatch = flippedCards.length === 2 && flippedCards[ 0 ].name === flippedCards[ 1 ].name;
+    const isNotMatch = flippedCards.length === 2 && flippedCards[ 0 ].name !== flippedCards[ 1 ].name;
 
     const currentRoundDeck = useRef(
         shuffle(
@@ -54,6 +57,9 @@ const GameScreen = () => {
     useEffect( () => {
         if ( isMatch ) {
             currentRoundDeck.current = markPairCompleted( currentRoundDeck.current, flippedCards );
+        } else if ( isNotMatch ) {
+            setCurrentPlayer( currentPlayer === 'player1' ? 'player2' : 'player1' );
+            setTimeout( () => setFlippedCards( [] ), 1500 );
         }
     }, [ flippedCards ] );
 
