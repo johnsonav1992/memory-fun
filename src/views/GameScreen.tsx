@@ -20,8 +20,17 @@ import BackgroundSheet from '../components/BackgroundSheet/BackgroundSheet';
 import MemoryCard from '../components/MemoryCard/MemoryCard';
 import MatchModal from '../components/MatchModal/MatchModal';
 
-// Context
-import { useMemoryGameContext } from '../state/context';
+// State
+import {
+    useAtom
+    , useAtomValue
+} from 'jotai';
+import {
+    currentDeckAtom
+    , currentPlayerAtom
+    , flippedCardsAtom
+    , scoresAtom
+} from '../state/jotai';
 
 // Utils
 import {
@@ -30,15 +39,10 @@ import {
 } from '../utils/gameUtils';
 
 const GameScreen = () => {
-    const {
-        currentDeck
-        , flippedCards
-        , setFlippedCards
-        , scores
-        , currentPlayer
-        , setCurrentPlayer
-        , setScores
-    } = useMemoryGameContext();
+    const [ scores, setScores ] = useAtom( scoresAtom );
+    const [ currentPlayer, setCurrentPlayer ] = useAtom( currentPlayerAtom );
+    const currentDeck = useAtomValue( currentDeckAtom );
+    const [ flippedCards, setFlippedCards ] = useAtom( flippedCardsAtom );
 
     const currentRoundDeck = useRef(
         shuffle(
