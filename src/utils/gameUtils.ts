@@ -30,12 +30,14 @@ export const setCurrentPlayerColor = ( player: TMemoryGameState['currentPlayer']
     }
 };
 
-export const findWinner = ( scores: TMemoryGameState['scores'] ) => {
+export const findWinner = ( scores: TMemoryGameState['scores'] ): 'Player 1' | 'Player 2' | 'tie' => {
     let highestScorer = null;
     let maxValue = -Infinity;
     let score: keyof typeof scores;
 
     for ( score in scores ) {
+        if ( scores[ score ] === maxValue ) return 'tie';
+
         if ( scores[ score ] > maxValue ) {
             maxValue = scores[ score ];
             highestScorer = score;
@@ -51,5 +53,5 @@ export const findWinner = ( scores: TMemoryGameState['scores'] ) => {
             break;
     }
 
-    return highestScorer;
+    return highestScorer as ReturnType<typeof findWinner>;
 };
