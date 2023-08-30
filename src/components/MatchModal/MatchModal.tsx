@@ -1,5 +1,12 @@
 // Libraries
-import { useSetAtom } from 'jotai';
+import {
+    useAtomValue
+    , useSetAtom
+} from 'jotai';
+import {
+    RESET
+    , useResetAtom
+} from 'jotai/utils';
 
 // MUI
 import {
@@ -18,8 +25,11 @@ import { TMemoryCard } from '../../types/types';
 
 // State
 import {
-    currentScreenAtom
+    currentPlayerAtom
+    , currentScreenAtom
     , flippedCardsAtom
+    , gamePlayersNumberAtom
+    , scoresAtom
 } from '../../state/jotai';
 
 interface Props {
@@ -33,14 +43,30 @@ const MatchModal = ( {
     , open
     , isGameFinished
 }: Props ) => {
-    const setFlippedCards = useSetAtom( flippedCardsAtom );
+    const setScores = useSetAtom( scoresAtom );
+    const resetFlippedCards = useResetAtom( flippedCardsAtom );
+    const resetCurrentPlayer = useResetAtom( currentPlayerAtom );
+    const resetGamePlayersNumber = useResetAtom( gamePlayersNumberAtom );
     const setCurrentScreen = useSetAtom( currentScreenAtom );
+    const gamePlayersNumber = useAtomValue( gamePlayersNumberAtom );
 
     const buttonClickHandler = () => {
         if ( isGameFinished ) {
-            setCurrentScreen( 'game-over-screen' );
+            if ( gamePlayersNumber === 1 ) {
+                handleResetGame();
+                setCurrentScreen( 'start-screen' );
+            } else {
+                setCurrentScreen( 'game-over-screen' );
+            }
         }
-        setFlippedCards( [] );
+    };
+
+    const handleResetGame = () => {
+        setScores( RESET );
+        resetFlippedCards();
+        resetCurrentPlayer();
+        resetGamePlayersNumber();
+        setCurrentScreen( 'start-screen' );
     };
 
     return (
@@ -66,7 +92,13 @@ const MatchModal = ( {
                         sx={ { fontSize: '1rem' } }
                         onClick={ buttonClickHandler }
                     >
-                        { isGameFinished ? 'See Scores' : 'Take Another Turn!' }
+                        {
+                            isGameFinished
+                                ? gamePlayersNumber > 1
+                                    ? 'See Scores'
+                                    : 'Play Again!'
+                                : 'Take Another Turn!'
+                        }
                     </Button>
                 </Stack>
             </ModalDialog>

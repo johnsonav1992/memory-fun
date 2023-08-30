@@ -121,6 +121,9 @@ const GameScreen = () => {
                                             { `${ scores.player1 } match${ es }` }
                                         </Typography>
                                     </Stack>
+                                    <Typography level='h4'>
+                                        { 'Let\'s Get Matching!' }
+                                    </Typography>
                                     <Stack gap='.5rem'>
                                         <Typography { ...textProps( 'player2' ) }>
                                             { 'Player 2:' }
