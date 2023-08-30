@@ -59,6 +59,7 @@ const MatchModal = ( {
                 setCurrentScreen( 'game-over-screen' );
             }
         }
+        resetFlippedCards();
     };
 
     const handleResetGame = () => {
