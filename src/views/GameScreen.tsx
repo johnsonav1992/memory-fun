@@ -73,7 +73,7 @@ const GameScreen = () => {
     useEffect( () => {
         if ( isMatch ) {
             currentRoundDeck.current = markPairCompleted( currentRoundDeck.current, flippedCards );
-            incrementPlayerScore();
+            gamePlayersNumber === 2 && incrementPlayerScore();
         } else if ( isNotMatch ) {
             setTimeout( () => {
                 switchPlayer();
