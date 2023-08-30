@@ -44,7 +44,6 @@ import {
     , setCurrentPlayerColor
 } from '../utils/gameUtils';
 import { TMemoryGameState } from '../types/types';
-import { SxProps } from '@mui/joy/styles/types';
 
 const GameScreen = () => {
     const setCurrentScreen = useSetAtom( currentScreenAtom );
