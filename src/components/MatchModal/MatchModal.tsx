@@ -20,7 +20,7 @@ import {
 // Components
 import MemoryCard from '../MemoryCard/MemoryCard';
 
-// types
+// Types
 import { TMemoryCard } from '../../types/types';
 
 // State

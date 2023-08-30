@@ -1,3 +1,6 @@
+// Libraries
+import { useAtom } from 'jotai';
+
 // MUI
 import {
     Box
@@ -11,7 +14,6 @@ import Image from '../Image/Image';
 import { TMemoryCard } from '../../types/types';
 
 // State
-import { useAtom } from 'jotai';
 import { flippedCardsAtom } from '../../state/jotai';
 
 interface Props {

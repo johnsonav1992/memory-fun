@@ -8,6 +8,11 @@ import {
 // Libraries
 import { shuffle } from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
+import {
+    useAtom
+    , useAtomValue
+    , useSetAtom
+} from 'jotai';
 
 // MUI
 import {
@@ -25,11 +30,6 @@ import MatchModal from '../components/MatchModal/MatchModal';
 
 // State
 import {
-    useAtom
-    , useAtomValue
-    , useSetAtom
-} from 'jotai';
-import {
     currentDeckAtom
     , currentPlayerAtom
     , currentScreenAtom
@@ -43,6 +43,8 @@ import {
     markPairCompleted
     , setCurrentPlayerColor
 } from '../utils/gameUtils';
+
+// Types
 import { TMemoryGameState } from '../types/types';
 
 const GameScreen = () => {
