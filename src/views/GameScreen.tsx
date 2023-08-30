@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import {
-    useEffect
+    ComponentProps
+    , useEffect
     , useRef
 } from 'react';
 
@@ -42,6 +43,8 @@ import {
     markPairCompleted
     , setCurrentPlayerColor
 } from '../utils/gameUtils';
+import { TMemoryGameState } from '../types/types';
+import { SxProps } from '@mui/joy/styles/types';
 
 const GameScreen = () => {
     const setCurrentScreen = useSetAtom( currentScreenAtom );
@@ -87,6 +90,11 @@ const GameScreen = () => {
         }
     }, [ flippedCards ] );
 
+    const textProps = ( player: TMemoryGameState['currentPlayer'] ): ComponentProps<typeof Typography> => ( {
+        level: 'title-lg'
+        , sx: setCurrentPlayerColor( player, currentPlayer )
+    } );
+
     const es = scores.player1 !== 1 ? 'es' : '';
     const _es = scores.player2 !== 1 ? 'es' : '';
 
@@ -107,30 +115,18 @@ const GameScreen = () => {
                                     justifyContent='space-between'
                                 >
                                     <Stack gap='.5rem'>
-                                        <Typography
-                                            level='title-lg'
-                                            sx={ setCurrentPlayerColor( 'player1', currentPlayer ) }
-                                        >
+                                        <Typography { ...textProps( 'player1' ) }>
                                             { 'Player 1:' }
                                         </Typography>
-                                        <Typography
-                                            level='title-lg'
-                                            sx={ setCurrentPlayerColor( 'player1', currentPlayer ) }
-                                        >
+                                        <Typography { ...textProps( 'player1' ) }>
                                             { `${ scores.player1 } match${ es }` }
                                         </Typography>
                                     </Stack>
                                     <Stack gap='.5rem'>
-                                        <Typography
-                                            level='title-lg'
-                                            sx={ setCurrentPlayerColor( 'player2', currentPlayer ) }
-                                        >
+                                        <Typography { ...textProps( 'player2' ) }>
                                             { 'Player 2:' }
                                         </Typography>
-                                        <Typography
-                                            level='title-lg'
-                                            sx={ setCurrentPlayerColor( 'player2', currentPlayer ) }
-                                        >
+                                        <Typography { ...textProps( 'player2' ) }>
                                             { `${ scores.player2 } match${ _es }` }
                                         </Typography>
                                     </Stack>
