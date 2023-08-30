@@ -10,10 +10,12 @@ import { v4 as uuidv4 } from 'uuid';
 
 // MUI
 import {
-    Card
+    Button
+    , Card
     , Stack
     , Typography
 } from '@mui/joy';
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 
 // Components
 import BackgroundSheet from '../components/BackgroundSheet/BackgroundSheet';
@@ -24,10 +26,12 @@ import MatchModal from '../components/MatchModal/MatchModal';
 import {
     useAtom
     , useAtomValue
+    , useSetAtom
 } from 'jotai';
 import {
     currentDeckAtom
     , currentPlayerAtom
+    , currentScreenAtom
     , flippedCardsAtom
     , gamePlayersNumberAtom
     , scoresAtom
@@ -40,6 +44,7 @@ import {
 } from '../utils/gameUtils';
 
 const GameScreen = () => {
+    const setCurrentScreen = useSetAtom( currentScreenAtom );
     const [ scores, setScores ] = useAtom( scoresAtom );
     const [ currentPlayer, setCurrentPlayer ] = useAtom( currentPlayerAtom );
     const [ flippedCards, setFlippedCards ] = useAtom( flippedCardsAtom );
@@ -157,6 +162,17 @@ const GameScreen = () => {
                 matchedCard={ flippedCards[ 0 ] }
                 isGameFinished={ isGameFinished }
             />
+            <Button
+                startDecorator={ <KeyboardReturnIcon /> }
+                onClick={ () => setCurrentScreen( 'start-screen' ) }
+                sx={ {
+                    position: 'fixed'
+                    , bottom: '1rem'
+                    , right: '1rem'
+                } }
+            >
+                Go To Start Screen
+            </Button>
         </BackgroundSheet>
     );
 };
