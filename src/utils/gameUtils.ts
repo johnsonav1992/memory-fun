@@ -29,3 +29,27 @@ export const setCurrentPlayerColor = ( player: TMemoryGameState['currentPlayer']
         };
     }
 };
+
+export const findWinner = ( scores: TMemoryGameState['scores'] ) => {
+    let highestScorer = null;
+    let maxValue = -Infinity;
+    let score: keyof typeof scores;
+
+    for ( score in scores ) {
+        if ( scores[ score ] > maxValue ) {
+            maxValue = scores[ score ];
+            highestScorer = score;
+        }
+    }
+
+    switch ( highestScorer ) {
+        case 'player1':
+            highestScorer = 'Player 1';
+            break;
+        case 'player2':
+            highestScorer = 'Player 2';
+            break;
+    }
+
+    return highestScorer;
+};

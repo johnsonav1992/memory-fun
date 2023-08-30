@@ -1,3 +1,9 @@
+// Libraries
+import {
+    useAtom
+    , useSetAtom
+} from 'jotai';
+
 // MUI
 import {
     Button
@@ -11,10 +17,6 @@ import {
 import BackgroundSheet from '../components/BackgroundSheet/BackgroundSheet';
 
 // State
-import {
-    useAtom
-    , useSetAtom
-} from 'jotai';
 import {
     currentDeckAtom
     , currentScreenAtom
@@ -65,7 +67,7 @@ const StartScreen = () => {
                         orientation='horizontal'
                         sx={ {
                             justifyContent: 'center'
-                            , gap: '1rem'
+                            , gap: '3rem'
                         } }
                     >
                         <Radio

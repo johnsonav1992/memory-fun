@@ -1,3 +1,6 @@
+// Libraries
+import { useSetAtom } from 'jotai';
+
 // MUI
 import {
     Button
@@ -14,7 +17,6 @@ import MemoryCard from '../MemoryCard/MemoryCard';
 import { TMemoryCard } from '../../types/types';
 
 // State
-import { useSetAtom } from 'jotai';
 import {
     currentScreenAtom
     , flippedCardsAtom
