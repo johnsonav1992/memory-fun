@@ -17,3 +17,10 @@ export const scoresAtom = atomWithReset<TMemoryGameState['scores']>( {
     player1: 0
     , player2: 0
 } );
+
+currentDeckAtom.debugLabel = 'currentScreen';
+flippedCardsAtom.debugLabel = 'flippedCards';
+currentPlayerAtom.debugLabel = 'currentPlayer';
+scoresAtom.debugLabel = 'scores';
+gamePlayersNumberAtom.debugLabel = 'gamePlayersNumber';
+currentScreenAtom.debugLabel = 'currentScreen';

@@ -29,6 +29,7 @@ import {
     currentDeckAtom
     , currentPlayerAtom
     , flippedCardsAtom
+    , gamePlayersNumberAtom
     , scoresAtom
 } from '../state/jotai';
 
@@ -43,6 +44,7 @@ const GameScreen = () => {
     const [ currentPlayer, setCurrentPlayer ] = useAtom( currentPlayerAtom );
     const [ flippedCards, setFlippedCards ] = useAtom( flippedCardsAtom );
     const currentDeck = useAtomValue( currentDeckAtom );
+    const gamePlayersNumber = useAtomValue( gamePlayersNumberAtom );
 
     const currentRoundDeck = useRef(
         shuffle(
@@ -92,39 +94,53 @@ const GameScreen = () => {
                 flexWrap='wrap'
             >
                 <Card sx={ { width: '100%' } }>
-                    <Stack
-                        direction='row'
-                        justifyContent='space-between'
-                    >
-                        <Stack gap='.5rem'>
-                            <Typography
-                                level='title-lg'
-                                sx={ setCurrentPlayerColor( 'player1', currentPlayer ) }
-                            >
-                                { 'Player 1:' }
-                            </Typography>
-                            <Typography
-                                level='title-lg'
-                                sx={ setCurrentPlayerColor( 'player1', currentPlayer ) }
-                            >
-                                { `${ scores.player1 } match${ es }` }
-                            </Typography>
-                        </Stack>
-                        <Stack gap='.5rem'>
-                            <Typography
-                                level='title-lg'
-                                sx={ setCurrentPlayerColor( 'player2', currentPlayer ) }
-                            >
-                                { 'Player 2:' }
-                            </Typography>
-                            <Typography
-                                level='title-lg'
-                                sx={ setCurrentPlayerColor( 'player2', currentPlayer ) }
-                            >
-                                { `${ scores.player2 } match${ _es }` }
-                            </Typography>
-                        </Stack>
-                    </Stack>
+                    {
+                        gamePlayersNumber === 2
+                            ? (
+                                <Stack
+                                    direction='row'
+                                    justifyContent='space-between'
+                                >
+                                    <Stack gap='.5rem'>
+                                        <Typography
+                                            level='title-lg'
+                                            sx={ setCurrentPlayerColor( 'player1', currentPlayer ) }
+                                        >
+                                            { 'Player 1:' }
+                                        </Typography>
+                                        <Typography
+                                            level='title-lg'
+                                            sx={ setCurrentPlayerColor( 'player1', currentPlayer ) }
+                                        >
+                                            { `${ scores.player1 } match${ es }` }
+                                        </Typography>
+                                    </Stack>
+                                    <Stack gap='.5rem'>
+                                        <Typography
+                                            level='title-lg'
+                                            sx={ setCurrentPlayerColor( 'player2', currentPlayer ) }
+                                        >
+                                            { 'Player 2:' }
+                                        </Typography>
+                                        <Typography
+                                            level='title-lg'
+                                            sx={ setCurrentPlayerColor( 'player2', currentPlayer ) }
+                                        >
+                                            { `${ scores.player2 } match${ _es }` }
+                                        </Typography>
+                                    </Stack>
+                                </Stack>
+                            )
+                            : (
+                                <Typography
+                                    level='h3'
+                                    color='primary'
+                                    textAlign='center'
+                                >
+                                    Find all the matches!
+                                </Typography>
+                            )
+                    }
                 </Card>
                 {
                     currentRoundDeck.current.map( card => (
