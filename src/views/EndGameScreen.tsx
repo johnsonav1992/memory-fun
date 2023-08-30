@@ -43,6 +43,9 @@ const EndGameScreen = () => {
 
     const winningPlayer = findWinner( scores );
 
+    const es = scores.player1 !== 1 ? 'es' : '';
+    const _es = scores.player2 !== 1 ? 'es' : '';
+
     const handleResetGame = () => {
         setScores( RESET );
         resetFlippedCards();
@@ -55,11 +58,11 @@ const EndGameScreen = () => {
         <BackgroundSheet>
             <Stack
                 alignItems='center'
-                gap='1rem'
+                justifyContent='space-between'
                 minHeight='55vh'
             >
                 <Typography level='h2'>
-                    { `${ winningPlayer } Wins!` }
+                    { winningPlayer === 'tie' ? 'It\'s a tie!' : `${ winningPlayer } Wins!` }
                 </Typography>
                 <Image
                     src={ celeb }
@@ -67,6 +70,27 @@ const EndGameScreen = () => {
                     height={ 200 }
                     style={ { borderRadius: '1rem' } }
                 />
+                <Stack
+                    direction='row'
+                    gap='1rem'
+                >
+                    <Stack gap='.5rem'>
+                        <Typography level='title-lg'>
+                            { 'Player 1:' }
+                        </Typography>
+                        <Typography level='title-lg'>
+                            { `${ scores.player1 } match${ es }` }
+                        </Typography>
+                    </Stack>
+                    <Stack gap='.5rem'>
+                        <Typography level='title-lg'>
+                            { 'Player 2:' }
+                        </Typography>
+                        <Typography level='title-lg'>
+                            { `${ scores.player2 } match${ _es }` }
+                        </Typography>
+                    </Stack>
+                </Stack>
                 <Button onClick={ () => handleResetGame() }>
                     Play Again!
                 </Button>
