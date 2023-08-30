@@ -1,6 +1,8 @@
 // MUI
 import {
     Button
+    , Radio
+    , RadioGroup
     , Stack
     , Typography
 } from '@mui/joy';
@@ -9,10 +11,14 @@ import {
 import BackgroundSheet from '../components/BackgroundSheet/BackgroundSheet';
 
 // State
-import { useSetAtom } from 'jotai';
+import {
+    useAtom
+    , useSetAtom
+} from 'jotai';
 import {
     currentDeckAtom
     , currentScreenAtom
+    , gamePlayersNumberAtom
 } from '../state/jotai';
 
 // Utils
@@ -21,6 +27,7 @@ import { spaceCards } from '../utils/spaceCards';
 const StartScreen = () => {
     const setCurrentScreen = useSetAtom( currentScreenAtom );
     const setCurrentDeck = useSetAtom( currentDeckAtom );
+    const [ gamePlayersNumber, setGamePlayersNumber ] = useAtom( gamePlayersNumberAtom );
 
     const handleStartGame = () => {
         setCurrentDeck( spaceCards );
@@ -41,14 +48,39 @@ const StartScreen = () => {
                 >
                     Memory Fun!
                 </Typography>
-                <Stack gap='6rem'>
+                <Stack
+                    gap='6rem'
+                    alignItems='center'
+                >
                     <Typography
                         level='title-lg'
                         fontStyle='italic'
                         textAlign='center'
                     >
-                        Click to get started!
+                        Choose your number of players then click to get started!
                     </Typography>
+                    <RadioGroup
+                        value={ gamePlayersNumber }
+                        onChange={ e => setGamePlayersNumber( Number( e.target.value ) as 1 | 2 ) }
+                        orientation='horizontal'
+                        sx={ {
+                            justifyContent: 'center'
+                            , gap: '1rem'
+                        } }
+                    >
+                        <Radio
+                            name='1-player'
+                            label='1 player'
+                            size='lg'
+                            value={ 1 }
+                        />
+                        <Radio
+                            name='2-player'
+                            label='2 players'
+                            size='lg'
+                            value={ 2 }
+                        />
+                    </RadioGroup>
                     <Button
                         variant='solid'
                         color='primary'
