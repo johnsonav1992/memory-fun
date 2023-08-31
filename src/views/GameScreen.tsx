@@ -69,7 +69,10 @@ const GameScreen = () => {
 
     const isMatch = flippedCards.length === 2 && flippedCards[ 0 ].name === flippedCards[ 1 ].name;
     const isNotMatch = flippedCards.length === 2 && flippedCards[ 0 ].name !== flippedCards[ 1 ].name;
-    const isGameFinished = currentRoundDeck.current.every( card => card.cardStatus === 'completed' );
+    const isGameFinished
+        = gamePlayersNumber === 1
+            ? currentRoundDeck.current.filter( card => card.cardStatus === 'in-progress' ).length === 2
+            : currentRoundDeck.current.every( card => card.cardStatus === 'completed' );
 
     const switchPlayer = () => setCurrentPlayer( currentPlayer === 'player1' ? 'player2' : 'player1' );
     const incrementPlayerScore = () => setScores( scores => {

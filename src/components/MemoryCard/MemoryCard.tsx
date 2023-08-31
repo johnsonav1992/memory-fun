@@ -41,8 +41,7 @@ const MemoryCard = ( {
         }
 
         if ( isMatch ) {
-            setFlippedCards( currentFlipped => [ ...currentFlipped, clickedCard ] );
-            return console.log( 'Its a match!!' );
+            return setFlippedCards( currentFlipped => [ ...currentFlipped, clickedCard ] );
         }
 
         if ( isClickedCardAlreadyFlipped ) {
