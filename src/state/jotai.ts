@@ -6,7 +6,7 @@ import { atomWithReset } from 'jotai/utils';
 import { TMemoryGameState } from '../types/types';
 
 // Utils
-import { spaceCards } from '../utils/spaceCards';
+import { spaceCards } from '../utils/card-sets/spaceCards';
 
 export const currentScreenAtom = atom<TMemoryGameState['currentScreen']>( 'start-screen' );
 export const gamePlayersNumberAtom = atomWithReset<TMemoryGameState['gamePlayersNumber']>( 2 );

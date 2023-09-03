@@ -24,7 +24,7 @@ import {
 } from '../state/jotai';
 
 // Utils
-import { spaceCards } from '../utils/spaceCards';
+import { spaceCards } from '../utils/card-sets/spaceCards';
 
 const StartScreen = () => {
     const setCurrentScreen = useSetAtom( currentScreenAtom );

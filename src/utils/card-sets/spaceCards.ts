@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import {
     ArrayOfLength
     , TMemoryCard
-} from '../types/types';
+} from '../../types/types';
 
 // Assets
 import astro1 from '../assets/astro1.png';
