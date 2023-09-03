@@ -10,7 +10,7 @@ export type TMemoryGameState = {
 }
 
 export interface CardImage {
-    path: `/src/assets/${ string }.png` | string;
+    path: `https://memory-game-imgs.s3.us-east-2.amazonaws.com/${ string }.png` | string;
     name: string;
 }
 
