@@ -7,8 +7,10 @@ import {
 // MUI
 import {
     Button
+    , Option
     , Radio
     , RadioGroup
+    , Select
     , Stack
     , Typography
 } from '@mui/joy';
@@ -25,14 +27,29 @@ import {
 
 // Utils
 import { spaceCards } from '../utils/card-sets/spaceCards';
+import { jungleCards } from '../utils/card-sets/jungleCards';
 
 const StartScreen = () => {
     const setCurrentScreen = useSetAtom( currentScreenAtom );
     const setCurrentDeck = useSetAtom( currentDeckAtom );
     const [ gamePlayersNumber, setGamePlayersNumber ] = useAtom( gamePlayersNumberAtom );
 
+    const cardSets = [
+        {
+            name: 'Outer Space 🚀'
+            , cards: spaceCards
+        }
+        , {
+            name: 'Jungle Animals 🐒'
+            , cards: jungleCards
+        }
+    ];
+
+    const handleSelectDeck = ( e: unknown, value: string | null ) => {
+        setCurrentDeck( cardSets.find( set => set.name === value )?.cards || [] );
+    };
+
     const handleStartGame = () => {
-        setCurrentDeck( spaceCards );
         setCurrentScreen( 'game-screen' );
     };
 
@@ -51,7 +68,7 @@ const StartScreen = () => {
                     Memory Fun!
                 </Typography>
                 <Stack
-                    gap='6rem'
+                    gap='4rem'
                     alignItems='center'
                 >
                     <Typography
@@ -83,6 +100,28 @@ const StartScreen = () => {
                             value={ 2 }
                         />
                     </RadioGroup>
+                    <Stack gap='1rem'>
+                        <Typography
+                            level='title-lg'
+                            fontStyle='italic'
+                            textAlign='center'
+                        >
+                            Choose your card theme:
+                        </Typography>
+                        <Select
+                            sx={ { width: '100%' } }
+                            onChange={ handleSelectDeck }
+                        >
+                            { cardSets.map( set => (
+                                <Option
+                                    key={ set.name }
+                                    value={ set.name }
+                                >
+                                    { set.name }
+                                </Option>
+                            ) ) }
+                        </Select>
+                    </Stack>
                     <Button
                         variant='solid'
                         color='primary'

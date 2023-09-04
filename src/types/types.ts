@@ -3,7 +3,7 @@ export type ArrayOfLength<T, U extends number> = Array<T> & { length: U }
 export type TMemoryGameState = {
     currentScreen: 'start-screen' | 'game-screen' | 'game-over-screen';
     gamePlayersNumber: 1 | 2;
-    currentDeck: TMemoryCard[];
+    currentDeck: TMemoryCard[] | [];
     flippedCards: TMemoryCard[];
     scores: Scores;
     currentPlayer: 'player1' | 'player2';
