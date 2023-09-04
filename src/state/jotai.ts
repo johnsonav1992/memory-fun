@@ -13,6 +13,7 @@ export const gamePlayersNumberAtom = atomWithReset<TMemoryGameState['gamePlayers
 export const currentDeckAtom = atom<TMemoryGameState['currentDeck']>( spaceCards );
 export const flippedCardsAtom = atomWithReset<TMemoryGameState['flippedCards']>( [] );
 export const currentPlayerAtom = atomWithReset<TMemoryGameState['currentPlayer']>( 'player1' );
+export const modalOpenAtom = atom<TMemoryGameState['modalOpen']>( false );
 export const scoresAtom = atomWithReset<TMemoryGameState['scores']>( {
     player1: 0
     , player2: 0

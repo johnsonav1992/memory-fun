@@ -7,6 +7,7 @@ export type TMemoryGameState = {
     flippedCards: TMemoryCard[];
     scores: Scores;
     currentPlayer: 'player1' | 'player2';
+    modalOpen: boolean;
 }
 
 export interface CardImage {

@@ -29,6 +29,7 @@ import {
     , currentScreenAtom
     , flippedCardsAtom
     , gamePlayersNumberAtom
+    , modalOpenAtom
     , scoresAtom
 } from '../../state/jotai';
 
@@ -45,6 +46,7 @@ const MatchModal = ( {
 }: Props ) => {
     const setScores = useSetAtom( scoresAtom );
     const resetFlippedCards = useResetAtom( flippedCardsAtom );
+    const setModalOpen = useSetAtom( modalOpenAtom );
     const resetCurrentPlayer = useResetAtom( currentPlayerAtom );
     const resetGamePlayersNumber = useResetAtom( gamePlayersNumberAtom );
     const setCurrentScreen = useSetAtom( currentScreenAtom );
@@ -60,6 +62,8 @@ const MatchModal = ( {
             }
         }
         resetFlippedCards();
+        setModalOpen( false );
+
     };
 
     const handleResetGame = () => {

@@ -10,6 +10,10 @@ import {
     , TMemoryGameState
 } from '../types/types';
 
+export const sleep = ( ms: number ) => {
+    return new Promise( resolve => setTimeout( resolve, ms ) );
+};
+
 export const markPairCompleted = ( deck: TMemoryCard[], flippedCards: TMemoryCard[] ): TMemoryCard[] => {
     return deck.map( card => {
         if ( card.name === flippedCards[ 0 ].name ) {

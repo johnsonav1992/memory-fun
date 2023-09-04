@@ -35,6 +35,7 @@ import {
     , currentScreenAtom
     , flippedCardsAtom
     , gamePlayersNumberAtom
+    , modalOpenAtom
     , scoresAtom
 } from '../state/jotai';
 
@@ -42,6 +43,7 @@ import {
 import {
     markPairCompleted
     , setCurrentPlayerColor
+    , sleep
 } from '../utils/gameUtils';
 
 // Types
@@ -50,6 +52,7 @@ import { TMemoryGameState } from '../types/types';
 const GameScreen = () => {
     const setCurrentScreen = useSetAtom( currentScreenAtom );
     const [ scores, setScores ] = useAtom( scoresAtom );
+    const [ modalOpen, setModalOpen ] = useAtom( modalOpenAtom );
     const [ currentPlayer, setCurrentPlayer ] = useAtom( currentPlayerAtom );
     const [ flippedCards, setFlippedCards ] = useAtom( flippedCardsAtom );
     const currentDeck = useAtomValue( currentDeckAtom );
@@ -84,8 +87,12 @@ const GameScreen = () => {
 
     useEffect( () => {
         if ( isMatch ) {
-            currentRoundDeck.current = markPairCompleted( currentRoundDeck.current, flippedCards );
-            gamePlayersNumber === 2 && incrementPlayerScore();
+            ( async () => {
+                await sleep( 500 );
+                setModalOpen( true );
+                currentRoundDeck.current = markPairCompleted( currentRoundDeck.current, flippedCards );
+                gamePlayersNumber === 2 && incrementPlayerScore();
+            } )();
         } else if ( isNotMatch ) {
             setTimeout( () => {
                 switchPlayer();
@@ -161,7 +168,7 @@ const GameScreen = () => {
                 }
             </Stack>
             <MatchModal
-                open={ isMatch }
+                open={ modalOpen }
                 matchedCard={ flippedCards[ 0 ] }
                 isGameFinished={ isGameFinished }
             />
