@@ -24,7 +24,7 @@ import {
 } from '../state/jotai';
 
 // Utils
-import { jungleCards } from '../utils/card-sets/jungleCards';
+import { spaceCards } from '../utils/card-sets/spaceCards';
 
 const StartScreen = () => {
     const setCurrentScreen = useSetAtom( currentScreenAtom );
@@ -32,7 +32,7 @@ const StartScreen = () => {
     const [ gamePlayersNumber, setGamePlayersNumber ] = useAtom( gamePlayersNumberAtom );
 
     const handleStartGame = () => {
-        setCurrentDeck( jungleCards );
+        setCurrentDeck( spaceCards );
         setCurrentScreen( 'game-screen' );
     };
 

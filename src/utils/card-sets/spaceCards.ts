@@ -46,7 +46,7 @@ export const spaceCards: ArrayOfLength<TMemoryCard, 10> = [
     }
     , {
         id: uuidv4()
-        , path: 'https://memory-game-imgs.s3.us-east-2.amazonaws.com/shuttle1.png'
+        , path: 'https://memory-game-imgs.s3.us-east-2.amazonaws.com/shuttle.png'
         , name: 'shuttle'
         , cardStatus: 'in-progress'
     }
