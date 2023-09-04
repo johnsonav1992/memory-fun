@@ -45,7 +45,7 @@ const StartScreen = () => {
         }
     ];
 
-    const handleSelectDeck = ( e: unknown, value: string | null ) => {
+    const handleSelectDeck = ( _e: unknown, value: string | null ) => {
         setCurrentDeck( cardSets.find( set => set.name === value )?.cards || [] );
     };
 
