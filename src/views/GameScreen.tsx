@@ -20,6 +20,7 @@ import {
     , Card
     , Stack
     , Typography
+    , useTheme
 } from '@mui/joy';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 
@@ -49,6 +50,9 @@ import {
 // Types
 import { TMemoryGameState } from '../types/types';
 
+// Hooks
+import { useMediaQuery } from '../hooks/useMediaQuery';
+
 const GameScreen = () => {
     const setCurrentScreen = useSetAtom( currentScreenAtom );
     const [ scores, setScores ] = useAtom( scoresAtom );
@@ -57,6 +61,9 @@ const GameScreen = () => {
     const [ flippedCards, setFlippedCards ] = useAtom( flippedCardsAtom );
     const currentDeck = useAtomValue( currentDeckAtom );
     const gamePlayersNumber = useAtomValue( gamePlayersNumberAtom );
+
+    const theme = useTheme();
+    const isMdScreen = useMediaQuery( theme.breakpoints.down( 'md' ) );
 
     const currentRoundDeck = useRef(
         shuffle(
@@ -133,16 +140,42 @@ const GameScreen = () => {
                                             { `${ scores.player1 } match${ es }` }
                                         </Typography>
                                     </Stack>
-                                    <Typography level='h4'>
+                                    <Typography
+                                        level='h4'
+                                        sx={ {
+                                            fontSize: {
+                                                xs: '1rem'
+                                                , sm: '2rem'
+                                            }
+                                        } }
+                                    >
                                         { 'Let\'s Get Matching!' }
                                     </Typography>
-                                    <Stack gap='.5rem'>
-                                        <Typography { ...textProps( 'player2' ) }>
-                                            { 'Player 2:' }
-                                        </Typography>
-                                        <Typography { ...textProps( 'player2' ) }>
-                                            { `${ scores.player2 } match${ _es }` }
-                                        </Typography>
+                                    <Stack
+                                        gap='.5rem'
+                                        textAlign='center'
+                                    >
+                                        {
+                                            isMdScreen
+                                                ? (
+                                                    <Typography
+                                                        { ...textProps( 'player2' ) }
+                                                        level='h2'
+                                                    >
+                                                        { scores.player2 }
+                                                    </Typography>
+                                                )
+                                                : (
+                                                    <>
+                                                        <Typography { ...textProps( 'player2' ) }>
+                                                            { 'Player 2:' }
+                                                        </Typography>
+                                                        <Typography { ...textProps( 'player2' ) }>
+                                                            { `${ scores.player2 } match${ _es }` }
+                                                        </Typography>
+                                                    </>
+                                                )
+                                        }
                                     </Stack>
                                 </Stack>
                             )
@@ -162,7 +195,7 @@ const GameScreen = () => {
                         <MemoryCard
                             key={ uuidv4() }
                             card={ card }
-                            width='10vw'
+                            width={ isMdScreen ? '20vw' : '10vw' }
                         />
                     ) )
                 }
