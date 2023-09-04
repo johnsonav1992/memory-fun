@@ -71,35 +71,37 @@ const StartScreen = () => {
                     gap='4rem'
                     alignItems='center'
                 >
-                    <Typography
-                        level='title-lg'
-                        fontStyle='italic'
-                        textAlign='center'
-                    >
-                        Choose your number of players then click to get started!
-                    </Typography>
-                    <RadioGroup
-                        value={ gamePlayersNumber }
-                        onChange={ e => setGamePlayersNumber( Number( e.target.value ) as 1 | 2 ) }
-                        orientation='horizontal'
-                        sx={ {
-                            justifyContent: 'center'
-                            , gap: '3rem'
-                        } }
-                    >
-                        <Radio
-                            name='1-player'
-                            label='1 player'
-                            size='lg'
-                            value={ 1 }
-                        />
-                        <Radio
-                            name='2-player'
-                            label='2 players'
-                            size='lg'
-                            value={ 2 }
-                        />
-                    </RadioGroup>
+                    <Stack gap='1rem'>
+                        <Typography
+                            level='title-lg'
+                            fontStyle='italic'
+                            textAlign='center'
+                        >
+                        Choose your number of players:
+                        </Typography>
+                        <RadioGroup
+                            value={ gamePlayersNumber }
+                            onChange={ e => setGamePlayersNumber( Number( e.target.value ) as 1 | 2 ) }
+                            orientation='horizontal'
+                            sx={ {
+                                justifyContent: 'center'
+                                , gap: '3rem'
+                            } }
+                        >
+                            <Radio
+                                name='1-player'
+                                label='1 player'
+                                size='lg'
+                                value={ 1 }
+                            />
+                            <Radio
+                                name='2-player'
+                                label='2 players'
+                                size='lg'
+                                value={ 2 }
+                            />
+                        </RadioGroup>
+                    </Stack>
                     <Stack gap='1rem'>
                         <Typography
                             level='title-lg'
@@ -111,6 +113,7 @@ const StartScreen = () => {
                         <Select
                             sx={ { width: '100%' } }
                             onChange={ handleSelectDeck }
+                            defaultValue={ cardSets[ 0 ].name }
                         >
                             { cardSets.map( set => (
                                 <Option
