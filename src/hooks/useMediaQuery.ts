@@ -3,12 +3,14 @@ import {
     , useState
 } from 'react';
 
-function removeQueryPrefix ( input: string ) {
+type MediaQueryString = `${ string } (${ string }-width ${ string })` | string;
+
+function removeQueryPrefix ( input: MediaQueryString ) {
     return input.replace( '@media ', '' );
 }
 
-export function useMediaQuery ( query: string ): boolean {
-    const getMatches = ( query: string ): boolean => {
+export const useMediaQuery = ( query: MediaQueryString ): boolean => {
+    const getMatches = ( query: MediaQueryString ): boolean => {
         // Prevents SSR issues
         if ( typeof window !== 'undefined' ) {
             return window.matchMedia( removeQueryPrefix( query ) ).matches;
@@ -18,9 +20,9 @@ export function useMediaQuery ( query: string ): boolean {
 
     const [ matches, setMatches ] = useState<boolean>( getMatches( query ) );
 
-    function handleChange () {
+    const handleChange = () => {
         setMatches( getMatches( query ) );
-    }
+    };
 
     useEffect( () => {
         const matchMedia = window.matchMedia( removeQueryPrefix( query ) );
@@ -36,4 +38,4 @@ export function useMediaQuery ( query: string ): boolean {
     }, [ query ] );
 
     return matches;
-}
+};

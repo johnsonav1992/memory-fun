@@ -20,14 +20,12 @@ interface Props {
     width: string;
     card: TMemoryCard;
     thickShadow?: boolean;
-    isMobile?: boolean;
 }
 
 const MemoryCard = ( {
     width
     , card
     , thickShadow = false
-    , isMobile
 }: Props ) => {
     const [ flippedCards, setFlippedCards ] = useAtom( flippedCardsAtom );
 

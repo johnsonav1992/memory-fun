@@ -18,7 +18,6 @@ const BackgroundSheet = ( { children }: PropsWithChildren<unknown> ) => {
             variant='soft'
             sx={ {
                 width: isMdScreen ? '90%' : '55vw'
-                // , height: isMdScreen ? '75%' : undefined
                 , p: '.5rem'
                 , borderRadius: '1rem'
                 , boxShadow: theme => theme.shadow.xl

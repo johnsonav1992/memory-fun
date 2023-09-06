@@ -224,7 +224,6 @@ const GameScreen = () => {
                                         ? '14vw'
                                         : '10vw'
                             }
-                            isMobile={ isSmScreen }
                         />
                     ) )
                 }
