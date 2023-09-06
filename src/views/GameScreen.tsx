@@ -38,6 +38,7 @@ import {
     , gamePlayersNumberAtom
     , modalOpenAtom
     , scoresAtom
+    , useResetGame
 } from '../state/jotai';
 
 // Utils
@@ -61,6 +62,8 @@ const GameScreen = () => {
     const [ flippedCards, setFlippedCards ] = useAtom( flippedCardsAtom );
     const currentDeck = useAtomValue( currentDeckAtom );
     const gamePlayersNumber = useAtomValue( gamePlayersNumberAtom );
+
+    const handleReset = useResetGame();
 
     const theme = useTheme();
     const isMdScreen = useMediaQuery( theme.breakpoints.down( 'md' ) );
@@ -235,7 +238,7 @@ const GameScreen = () => {
             />
             <Button
                 startDecorator={ <KeyboardReturnIcon /> }
-                onClick={ () => setCurrentScreen( 'start-screen' ) }
+                onClick={ handleReset }
                 sx={ {
                     position: 'fixed'
                     , bottom: '1rem'
