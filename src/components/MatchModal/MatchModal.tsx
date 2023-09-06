@@ -12,6 +12,7 @@ import {
     , ModalDialog
     , Stack
     , Typography
+    , useTheme
 } from '@mui/joy';
 
 // Components
@@ -29,6 +30,9 @@ import {
     , useResetGame
 } from '../../state/jotai';
 
+// Hooks
+import { useMediaQuery } from '../../hooks/useMediaQuery';
+
 interface Props {
     open: boolean;
     matchedCard: TMemoryCard;
@@ -44,6 +48,9 @@ const MatchModal = ( {
     const setModalOpen = useSetAtom( modalOpenAtom );
     const setCurrentScreen = useSetAtom( currentScreenAtom );
     const gamePlayersNumber = useAtomValue( gamePlayersNumberAtom );
+
+    const theme = useTheme();
+    const isSmScreen = useMediaQuery( theme.breakpoints.down( 'sm' ) );
 
     const handleReset = useResetGame();
 
@@ -74,7 +81,7 @@ const MatchModal = ( {
                     m='1rem'
                 >
                     <Typography
-                        level='h1'
+                        level={ isSmScreen ? 'h3' : 'h1' }
                         color='primary'
                     >
                         { isGameFinished ? 'You finished the game!' : 'You Got a Match!' }
