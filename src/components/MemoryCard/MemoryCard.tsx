@@ -61,11 +61,10 @@ const MemoryCard = ( {
             {
                 card.cardStatus === 'in-progress'
                     ? (
-
                         <Card
                             sx={ [ {
                                 width
-                                , height: width
+                                , aspectRatio: '1/1'
                                 , p: !isCardImageVisible ? '.2rem' : '.1rem'
                                 , '&:hover': {
                                     cursor: 'pointer'

@@ -28,6 +28,7 @@ function App () {
             justifyContent='center'
             alignItems='center'
             height='100vh'
+            overflow='auto'
             sx={ { backgroundColor: theme => theme.palette.background.level3 } }
         >
             { renderScreen() }

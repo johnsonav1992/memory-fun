@@ -25,6 +25,9 @@ import {
     , gamePlayersNumberAtom
 } from '../state/jotai';
 
+// Types
+import { CardSet } from '../types/types';
+
 // Utils
 import { spaceCards } from '../utils/card-sets/spaceCards';
 import { jungleCards } from '../utils/card-sets/jungleCards';
@@ -34,7 +37,7 @@ const StartScreen = () => {
     const setCurrentDeck = useSetAtom( currentDeckAtom );
     const [ gamePlayersNumber, setGamePlayersNumber ] = useAtom( gamePlayersNumberAtom );
 
-    const cardSets = [
+    const cardSets: CardSet[] = [
         {
             name: 'Outer Space 🚀'
             , cards: spaceCards
@@ -64,6 +67,14 @@ const StartScreen = () => {
                     level='h1'
                     fontSize='5rem'
                     color='primary'
+                    sx={ {
+                        fontSize: {
+                            xs: '3rem'
+                            , s: '3.5rem'
+                            , md: '4rem'
+                            , lg: '5rem'
+                        }
+                    } }
                 >
                     Memory Fun!
                 </Typography>

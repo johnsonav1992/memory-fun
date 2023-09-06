@@ -24,3 +24,8 @@ export interface Scores {
     player1: number;
     player2: number;
 }
+
+export interface CardSet {
+    name: string;
+    cards: TMemoryCard[];
+}
