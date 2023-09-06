@@ -20,12 +20,14 @@ interface Props {
     width: string;
     card: TMemoryCard;
     thickShadow?: boolean;
+    isMobile?: boolean;
 }
 
 const MemoryCard = ( {
     width
     , card
     , thickShadow = false
+    , isMobile
 }: Props ) => {
     const [ flippedCards, setFlippedCards ] = useAtom( flippedCardsAtom );
 
@@ -61,11 +63,10 @@ const MemoryCard = ( {
             {
                 card.cardStatus === 'in-progress'
                     ? (
-
                         <Card
                             sx={ [ {
                                 width
-                                , height: width
+                                , aspectRatio: '1/1'
                                 , p: !isCardImageVisible ? '.2rem' : '.1rem'
                                 , '&:hover': {
                                     cursor: 'pointer'

@@ -64,6 +64,7 @@ const GameScreen = () => {
 
     const theme = useTheme();
     const isMdScreen = useMediaQuery( theme.breakpoints.down( 'md' ) );
+    const isSmScreen = useMediaQuery( theme.breakpoints.down( 'sm' ) );
 
     const currentRoundDeck = useRef(
         shuffle(
@@ -124,7 +125,13 @@ const GameScreen = () => {
                 gap='.5rem'
                 flexWrap='wrap'
             >
-                <Card sx={ { width: '100%' } }>
+                <Card
+                    sx={ {
+                        width: isSmScreen || isMdScreen
+                            ? '85%'
+                            : '98%'
+                    } }
+                >
                     {
                         gamePlayersNumber === 2
                             ? (
@@ -133,19 +140,34 @@ const GameScreen = () => {
                                     justifyContent='space-between'
                                 >
                                     <Stack gap='.5rem'>
-                                        <Typography { ...textProps( 'player1' ) }>
-                                            { 'Player 1:' }
-                                        </Typography>
-                                        <Typography { ...textProps( 'player1' ) }>
-                                            { `${ scores.player1 } match${ es }` }
-                                        </Typography>
+                                        {
+                                            isMdScreen
+                                                ? (
+                                                    <Typography
+                                                        { ...textProps( 'player1' ) }
+                                                        level='h2'
+                                                    >
+                                                        { scores.player1 }
+                                                    </Typography>
+                                                )
+                                                : (
+                                                    <>
+                                                        <Typography { ...textProps( 'player1' ) }>
+                                                            { 'Player 1:' }
+                                                        </Typography>
+                                                        <Typography { ...textProps( 'player1' ) }>
+                                                            { `${ scores.player1 } match${ _es }` }
+                                                        </Typography>
+                                                    </>
+                                                )
+                                        }
                                     </Stack>
                                     <Typography
                                         level='h4'
                                         sx={ {
                                             fontSize: {
-                                                xs: '1rem'
-                                                , sm: '2rem'
+                                                xs: '1.5rem'
+                                                , lg: '2rem'
                                             }
                                         } }
                                     >
@@ -195,7 +217,14 @@ const GameScreen = () => {
                         <MemoryCard
                             key={ uuidv4() }
                             card={ card }
-                            width={ isMdScreen ? '20vw' : '10vw' }
+                            width={
+                                isSmScreen
+                                    ? '20%'
+                                    : isMdScreen
+                                        ? '14vw'
+                                        : '10vw'
+                            }
+                            isMobile={ isSmScreen }
                         />
                     ) )
                 }
