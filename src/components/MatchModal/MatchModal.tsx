@@ -3,10 +3,7 @@ import {
     useAtomValue
     , useSetAtom
 } from 'jotai';
-import {
-    RESET
-    , useResetAtom
-} from 'jotai/utils';
+import { useResetAtom } from 'jotai/utils';
 
 // MUI
 import {
@@ -25,12 +22,11 @@ import { TMemoryCard } from '../../types/types';
 
 // State
 import {
-    currentPlayerAtom
-    , currentScreenAtom
+    currentScreenAtom
     , flippedCardsAtom
     , gamePlayersNumberAtom
     , modalOpenAtom
-    , scoresAtom
+    , useResetGame
 } from '../../state/jotai';
 
 interface Props {
@@ -44,13 +40,12 @@ const MatchModal = ( {
     , open
     , isGameFinished
 }: Props ) => {
-    const setScores = useSetAtom( scoresAtom );
     const resetFlippedCards = useResetAtom( flippedCardsAtom );
     const setModalOpen = useSetAtom( modalOpenAtom );
-    const resetCurrentPlayer = useResetAtom( currentPlayerAtom );
-    const resetGamePlayersNumber = useResetAtom( gamePlayersNumberAtom );
     const setCurrentScreen = useSetAtom( currentScreenAtom );
     const gamePlayersNumber = useAtomValue( gamePlayersNumberAtom );
+
+    const handleReset = useResetGame();
 
     const buttonClickHandler = () => {
         if ( isGameFinished ) {
@@ -67,11 +62,7 @@ const MatchModal = ( {
     };
 
     const handleResetGame = () => {
-        setScores( RESET );
-        resetFlippedCards();
-        resetCurrentPlayer();
-        resetGamePlayersNumber();
-        setCurrentScreen( 'start-screen' );
+        handleReset();
     };
 
     return (
