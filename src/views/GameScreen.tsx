@@ -33,7 +33,6 @@ import MatchModal from '../components/MatchModal/MatchModal';
 import {
     currentDeckAtom
     , currentPlayerAtom
-    , currentScreenAtom
     , flippedCardsAtom
     , gamePlayersNumberAtom
     , modalOpenAtom
@@ -55,7 +54,6 @@ import { TMemoryGameState } from '../types/types';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 
 const GameScreen = () => {
-    const setCurrentScreen = useSetAtom( currentScreenAtom );
     const [ scores, setScores ] = useAtom( scoresAtom );
     const [ modalOpen, setModalOpen ] = useAtom( modalOpenAtom );
     const [ currentPlayer, setCurrentPlayer ] = useAtom( currentPlayerAtom );
