@@ -156,7 +156,7 @@ const GameScreen = () => {
                                                             { 'Player 1:' }
                                                         </Typography>
                                                         <Typography { ...textProps( 'player1' ) }>
-                                                            { `${ scores.player1 } match${ _es }` }
+                                                            { `${ scores.player1 } match${ es }` }
                                                         </Typography>
                                                     </>
                                                 )
