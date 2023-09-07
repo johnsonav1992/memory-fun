@@ -48,7 +48,7 @@ const StartScreen = () => {
             , cards: jungleCards
         }
         , {
-            name: 'Dino Cards 🦖'
+            name: 'Dinos 🦖'
             , cards: dinoCards
         }
     ];
