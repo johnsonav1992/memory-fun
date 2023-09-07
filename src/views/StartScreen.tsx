@@ -31,6 +31,7 @@ import { CardSet } from '../types/types';
 // Utils
 import { spaceCards } from '../utils/card-sets/spaceCards';
 import { jungleCards } from '../utils/card-sets/jungleCards';
+import { dinoCards } from '../utils/card-sets/dinoCards';
 
 const StartScreen = () => {
     const setCurrentScreen = useSetAtom( currentScreenAtom );
@@ -45,6 +46,10 @@ const StartScreen = () => {
         , {
             name: 'Jungle Animals 🐒'
             , cards: jungleCards
+        }
+        , {
+            name: 'Dino Cards 🦖'
+            , cards: dinoCards
         }
     ];
 
